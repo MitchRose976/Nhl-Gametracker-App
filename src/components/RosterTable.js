@@ -5,28 +5,64 @@ import styled from "styled-components";
 import Container from "../UX/Container";
 
 const RosterTable = () => {
-    
   // This variable is controlled by state and will change to the id of whatever team the user submits
   let teamIndex = 9;
   let url = `https://statsapi.web.nhl.com/api/v1/teams/${teamIndex}?expand=team.roster`;
-  // sets Roster to null when no team is selected (default state)
-  const [roster, setRoster] = useState(null);
-  // Stores the content to be displayed, null by default
-  let teamRoster = null;
+  // State to hold each player bio (height, weight, #, birthplace, birthdate etc.)
+  const [playerInfo, setPlayerInfo] = useState(null);
+  // State to hold all players stats (games played, goals, assists, hits, blocked shots etc.)
+  const [playerStats, setPlayerStats] = useState(null);
+  const [playerData, setplayerData] = useState(null);
+  // current season
+  let currentYear = new Date().getFullYear();
+  let currentSeason = currentYear.toString().concat(currentYear + 1);
   // 1st argument - function to run when monitored variable changes
   // 2nd argument - variable to monitor
   // Fetch API from NHL
   useEffect(() => {
-    axios.get(url).then((response) => {
-      setRoster(response.data);
-    });
+    let result;
+    let playerInfoPromises = [];
+    let playerStatsPromises = [];
+    axios.get(url)
+    .then((response) => {
+      // Destructure promise to get the team roster
+      result = response.data.teams[0].roster.roster;
+      // Push a promise for each player on the roster to fetch their info to array
+      result.forEach((data) =>
+        playerInfoPromises.push(
+          axios.get(
+            `https://statsapi.web.nhl.com/api/v1/people/${data.person.id}`
+          )
+        )
+      );
+      // Push a promise for each player on the roster to fetch their stats to array
+      result.forEach((data) =>
+        playerStatsPromises.push(
+          axios.get(
+            `https://statsapi.web.nhl.com/api/v1/people/${data.person.id}/stats?stats=statsSingleSeason&season=${currentSeason}`
+          )
+        )
+      );
+      // Fetch player bio using playerInfoPromises array
+      let getPlayerInfo = async () => {
+        let data = await Promise.all(playerInfoPromises);
+        data = data.map((player) => player.data.people[0]);
+        setPlayerInfo(data);
+      };
+      getPlayerInfo();
+      // Fetch all playerStats using playerStatsPromises array
+      let getPlayerStats = async () => {
+        let data = await Promise.all(playerStatsPromises);
+        data = data.map((player) => player.data.stats[0].splits[0]);
+        setPlayerStats(data);
+      };
+      getPlayerStats();
+    })
   }, [url]);
 
-  // If API fetch is successful, push all team names to an array
-  if (roster) {
-    teamRoster = roster.teams[0].roster.roster;
-    
-    console.log(teamRoster);
+  if (playerInfo && playerStats) {
+      let playerData = [playerInfo, playerStats];
+      //console.log(playerData);
   }
 
   return (
@@ -59,35 +95,85 @@ const RosterTable = () => {
               <th>Weight</th>
               <th>Born</th>
               <th>Birthplace</th>
+              <th>GP</th>
+              <th>G</th>
+              <th>A</th>
+              <th>P</th>
+              <th>+/-</th>
+              <th>PiM</th>
+              <th>Hits</th>
+              <th>ToI</th>
+              <th>ToI/G</th>
+              <th>ToI/SH</th>
+              <th>ToI/PP</th>
+              <th>PPG</th>
+              <th>PPP</th>
+              <th>FO%</th>
+              <th>S%</th>
+              <th>SB</th>
             </tr>
           </thead>
           <tbody>
-            {/* <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr> */}
-            {teamRoster ? teamRoster.map((player) => (
-                <tr>
+            {playerInfo && playerStats 
+              ? playerInfo.map((player) => (
+                  <tr key={parseInt(player.id)}>
                     {/* Name */}
-                    <td>{player.person.fullName}</td>
+                    <td>{player.fullName}</td>
                     {/* # */}
-                    <td>{player.jerseyNumber}</td>
+                    <td>{player.primaryNumber}</td>
                     {/* Position */}
-                    <td>{player.position.code}</td>
+                    <td>{player.primaryPosition.code}</td>
                     {/* Shot (Left or Right) */}
-                    <td>{}</td>
+                    <td>{player.shootsCatches}</td>
                     {/* Height */}
-                    <td></td>
+                    <td>{player.height}</td>
                     {/* Weight */}
-                    <td></td>
+                    <td>{player.weight}</td>
                     {/* Birthdate */}
-                    <td></td>
+                    <td>{player.birthDate}</td>
                     {/* Birthplace */}
+                    {player.birthStateProvince ? (
+                      <td>{`${player.birthCity}, ${player.birthStateProvince}, ${player.birthCountry}`}</td>
+                    ) : (
+                      <td>{`${player.birthCity}, ${player.birthCountry}`}</td>
+                    )}
+
+                    {/* GP (Games Played) */}
                     <td></td>
-                </tr>
-            )) : null};
+                    {/* G (Goals) */}
+                    <td></td>
+                    {/* A (Assists) */}
+                    <td></td>
+                    {/* P (Points) */}
+                    <td></td>
+                    {/* +/- (plus/minus) */}
+                    <td></td>
+                    {/* PiM (Penalty in Minutes) */}
+                    <td></td>
+                    {/* Hits */}
+                    <td></td>
+                    {/* ToI (Total Time on Ice) */}
+                    <td></td>
+                    {/* ToI/G (Time on Ice per Game) */}
+                    <td></td>
+                    {/* ToI/SH (Time on Ice Short Handed per Game) */}
+                    <td></td>
+                    {/* ToI/PP (Time on Ice Powerplay per Game) */}
+                    <td></td>
+                    {/* PPG (Powerplay Goals) */}
+                    <td></td>
+                    {/* PPP (Powerplay Points) */}
+                    <td></td>
+                    {/* FO% (Faceoff Percentage) */}
+                    <td></td>
+                    {/* S% (Shooting Percentage) */}
+                    <td></td>
+                    {/* SB (Shots Blocked) */}
+                    <td></td>
+                  </tr>
+                ))
+              : null}
+            ;
           </tbody>
         </Table>
       </Container>
