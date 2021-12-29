@@ -2,6 +2,13 @@ body {
   background: black;
 }
 
+thead tr {
+  position: sticky;
+  top: 0;
+  box-shadow: 0 1px black;
+  background-color: white;
+}
+
 .background-image {
   object-fit: fill;
   width: 100%;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Table } from "react-bootstrap";
-import styled from "styled-components";
 import Container from "../UX/Container";
 
 // teamID is the state passed from the dropdown menu
@@ -63,12 +62,13 @@ const RosterTable = ({ teamId }) => {
   let goalieRows = [];
   if (playerInfo && playerStats) {
     for (let i = 0; i < playerInfo.length; i++) {
+      // Check if they are a player and push to player array
       if (
         playerInfo[i].primaryPosition.type === "Forward" ||
         playerInfo[i].primaryPosition.type === "Defenseman"
       ) {
         playerRows.push(
-          <tr key={parseInt(playerInfo[i].id)}>
+          <tr key={playerInfo[i].id}>
             {/* Name */}
             <td>{playerInfo[i].fullName}</td>
             {/* # */}
@@ -147,9 +147,10 @@ const RosterTable = ({ teamId }) => {
             <td>{playerStats[i] ? playerStats[i].stat.blocked : "N/A"}</td>
           </tr>
         );
+        // Check if player is a goalie and push to goalie array
       } else if (playerInfo[i].primaryPosition.type === "Goalie") {
         goalieRows.push(
-            <tr key={parseInt(playerInfo[i].id)}>
+          <tr key={playerInfo[i].id}>
             {/* Name */}
             <td>{playerInfo[i].fullName}</td>
             {/* # */}
@@ -183,7 +184,9 @@ const RosterTable = ({ teamId }) => {
             {/* OT (Overtime Losses) */}
             <td>{playerStats[i] ? playerStats[i].stat.ot : "N/A"}</td>
             {/* GAA (Goals Against Average) */}
-            <td>{playerStats[i] ? playerStats[i].stat.goalAgainstAverage : "N/A"}</td>
+            <td>
+              {playerStats[i] ? playerStats[i].stat.goalAgainstAverage : "N/A"}
+            </td>
             {/* SA (Shots Against) */}
             <td>{playerStats[i] ? playerStats[i].stat.shotsAgainst : "N/A"}</td>
             {/* GA (Goals Against) */}
@@ -191,13 +194,15 @@ const RosterTable = ({ teamId }) => {
             {/* S (Saves) */}
             <td>{playerStats[i] ? playerStats[i].stat.saves : "N/A"}</td>
             {/* SV% (Saves Percentage) */}
-            <td>{playerStats[i] ? playerStats[i].stat.savePercentage : "N/A"}</td>
+            <td>
+              {playerStats[i] ? playerStats[i].stat.savePercentage : "N/A"}
+            </td>
             {/* SO (Shutouts) */}
             <td>{playerStats[i] ? playerStats[i].stat.shutouts : "N/A"}</td>
             {/* ToI (Time on Ice) */}
             <td>{playerStats[i] ? playerStats[i].stat.timeOnIce : "N/A"}</td>
           </tr>
-        )
+        );
       }
     }
   }
@@ -205,7 +210,7 @@ const RosterTable = ({ teamId }) => {
   return (
     <Container
       backgroundColor="rgb(255,255,255, 0.6)"
-      width="70%"
+      width="90%"
       height="40rem"
       display="flex"
       justifyContent="center"
@@ -218,7 +223,6 @@ const RosterTable = ({ teamId }) => {
         height="35rem"
         width="100%"
         backgroundColor="rgb(255,255,255, 0.8)"
-        margin="1rem 0 0 0"
         overflowX="auto"
       >
         {/* Table for Players */}
@@ -253,7 +257,7 @@ const RosterTable = ({ teamId }) => {
               <th>SB</th>
             </tr>
           </thead>
-          <tbody>{playerRows ? playerRows : "Error while loading data"};</tbody>
+          <tbody>{playerRows ? playerRows : "Error while loading data"}</tbody>
         </Table>
         {/* Table for Goalies */}
         <Table striped bordered hover>
@@ -282,7 +286,7 @@ const RosterTable = ({ teamId }) => {
               <th>ToI</th>
             </tr>
           </thead>
-          <tbody>{goalieRows ? goalieRows : "Error while loading data"};</tbody>
+          <tbody>{goalieRows ? goalieRows : "Error while loading data"}</tbody>
         </Table>
       </Container>
     </Container>

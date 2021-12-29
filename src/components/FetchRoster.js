@@ -42,14 +42,15 @@ const FetchRoster = () => {
     <Container
       backgroundColor="rgb(255,255,255, 0.6)"
       width="70%"
-      height="40rem"
+      height="45rem"
       display="flex"
+      margin="2rem 0 0 0"
       justifyContent="center"
       flexDirection="column"
       alignItems="center"
-      padding="1rem"
+      padding="1rem 0"
     >
-      <Container display="flex" justify="center">
+      <Container display="flex" justify="center" margin="0 0 2rem 0">
         {/* Bootstrap Dropdown */}
         <Dropdown onSelect={handleSelectTeam}>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
