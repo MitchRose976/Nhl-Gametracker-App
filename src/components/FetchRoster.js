@@ -3,28 +3,38 @@ import axios from "axios";
 import { Dropdown, Button, Table } from "react-bootstrap";
 import styled from "styled-components";
 import Container from "../UX/Container";
+import RosterTable from "./RosterTable";
 
 const FetchRoster = () => {
   let url = "https://statsapi.web.nhl.com/api/v1/teams";
   // sets Roster to null when no team is selected (default state)
-  const [team, setTeam] = useState(null);
+  const [teamList, setTeamList] = useState(null);
   // Stores the content to be displayed, null by default
-  let teamsList = null;
+  let teams = null;
   // 1st argument - function to run when monitored variable changes
   // 2nd argument - variable to monitor
   // Fetch API from NHL
   useEffect(() => {
     axios.get(url).then((response) => {
-      setTeam(response.data);
+      setTeamList(response.data);
     });
   }, [url]);
 
   // If API fetch is successful, push all team names to an array
-  if (team) {
-    teamsList = [];
+  if (teamList) {
+    teams = [];
     // Push all team names to an array
-    for (let i = 0; i < team.teams.length; i++) {
-      teamsList.push(team.teams[i].name);
+    for (let i = 0; i < teamList.teams.length; i++) {
+      teams.push(teamList.teams[i]);
+    }
+  }
+
+  const [selectedTeam, setSelectedTeam] = useState("Select a Team");
+  const handleSelectTeam = (e) => {
+    for (let i = 0; i < teams.length; i++) {
+      if (e === teams[i].name) {
+        setSelectedTeam(teams[i]);
+      }
     }
   }
 
@@ -41,66 +51,20 @@ const FetchRoster = () => {
     >
       <Container display="flex" justify="center">
         {/* Bootstrap Dropdown */}
-        <Dropdown>
+        <Dropdown onSelect={handleSelectTeam}>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
-            Choose a Team
+            {selectedTeam.name ? selectedTeam.name : selectedTeam}
           </Dropdown.Toggle>
-          <Dropdown.Menu className="team-dropdown">
-            {teamsList
-              ? teamsList.map((team) => (
-                  <Dropdown.Item key={team}>{team}</Dropdown.Item>
+          <Dropdown.Menu className="team-dropdown" >
+            {teams
+              ? teams.map((team) => (
+                  <Dropdown.Item key={team.id} eventKey={team.name}>{team.name}</Dropdown.Item>
                 ))
               : "Error"}
           </Dropdown.Menu>
         </Dropdown>
-        {/* Submit Button */}
-        <Button variant="info" className="get-roster-button">
-          Get Roster
-        </Button>{" "}
       </Container>
-
-      {/* Container to display rosters */}
-      <Container
-        height="35rem"
-        width="80%"
-        backgroundColor="rgb(255,255,255, 0.8)"
-        margin="1rem 0 0 0"
-        overflowX="auto"
-      >
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Player</th>
-              <th>#</th>
-              <th>Pos</th>
-              <th>Shot</th>
-              <th>Height</th>
-              <th>Weight</th>
-              <th>Born</th>
-              <th>Birthplace</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td colSpan={2}>Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </Table>
-      </Container>
+      <RosterTable teamId={selectedTeam ? selectedTeam.id : ""}/>
     </Container>
   );
 };

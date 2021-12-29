@@ -9,7 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <PageWrapper className="wrapper">
-      <RosterTable/>
+      {/* <RosterTable/> */}
+      <FetchRoster/>
     </PageWrapper>
   );
 }
