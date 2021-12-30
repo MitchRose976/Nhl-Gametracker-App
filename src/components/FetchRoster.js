@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Dropdown, Button, Table } from "react-bootstrap";
+import { Dropdown, Collapse } from "react-bootstrap";
 import styled from "styled-components";
 import Container from "../UX/Container";
 import RosterTable from "./RosterTable";
@@ -36,7 +36,10 @@ const FetchRoster = () => {
         setSelectedTeam(teams[i]);
       }
     }
-  }
+  };
+
+  // State to control bootstrap collapse transition
+  const [open, setOpen] = useState(false);
 
   return (
     <Container
@@ -47,25 +50,33 @@ const FetchRoster = () => {
       margin="2rem 0 0 0"
       justifyContent="center"
       flexDirection="column"
-      alignItems="center"
-      padding="1rem 0"
+      padding="1rem"
     >
       <Container display="flex" justify="center" margin="0 0 2rem 0">
         {/* Bootstrap Dropdown */}
-        <Dropdown onSelect={handleSelectTeam}>
+        <Dropdown
+          onSelect={handleSelectTeam}
+          onClick={() => setOpen(!open)}
+          aria-controls="example-collapse-text"
+          aria-expanded={open}
+        >
           <Dropdown.Toggle variant="success" id="dropdown-basic">
             {selectedTeam.name ? selectedTeam.name : selectedTeam}
           </Dropdown.Toggle>
-          <Dropdown.Menu className="team-dropdown" >
-            {teams
-              ? teams.map((team) => (
-                  <Dropdown.Item key={team.id} eventKey={team.name}>{team.name}</Dropdown.Item>
-                ))
-              : "Error"}
-          </Dropdown.Menu>
+          <Collapse in={open}>
+            <Dropdown.Menu className="team-dropdown" id="example-collapse-text">
+              {teams
+                ? teams.map((team) => (
+                    <Dropdown.Item key={team.id} eventKey={team.name}>
+                      {team.name}
+                    </Dropdown.Item>
+                  ))
+                : "Error"}
+            </Dropdown.Menu>
+          </Collapse>
         </Dropdown>
       </Container>
-      <RosterTable teamId={selectedTeam ? selectedTeam.id : ""}/>
+      <RosterTable teamId={selectedTeam ? selectedTeam.id : ""} />
     </Container>
   );
 };

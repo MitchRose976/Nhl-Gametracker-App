@@ -1,13 +1,4 @@
-body {
-  background: black;
-}
 
-thead tr {
-  position: sticky;
-  top: 0;
-  box-shadow: 0 1px black;
-  background-color: white;
-}
 
 .background-image {
   object-fit: fill;
@@ -20,6 +11,7 @@ thead tr {
   columns: 2;
   -webkit-columns: 2;
   -moz-columns: 2;
+  
 }
 
 /* Submit Button Beside Team Menu Dropdown */
@@ -27,4 +19,12 @@ thead tr {
   margin-left: 1rem;
 }
 
+/* Adds sticky header to tables so viewing stats for players
+   is easier */
+thead tr {
+  position: sticky;
+  top: 0;
+  box-shadow: 0 1px black;
+  background-color: white;
+}
 

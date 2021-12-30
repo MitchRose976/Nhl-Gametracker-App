@@ -5,12 +5,14 @@ import background1 from './media/arena-background.jpg';
 import FetchRoster from './components/FetchRoster'
 import RosterTable from './components/RosterTable'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import LiveGamesTable from './components/LiveGamesTable';
 
 function App() {
   return (
     <PageWrapper className="wrapper">
       {/* <RosterTable/> */}
-      <FetchRoster/>
+      {/* <FetchRoster/> */}
+      <LiveGamesTable/>
     </PageWrapper>
   );
 }

@@ -210,13 +210,14 @@ const RosterTable = ({ teamId }) => {
   return (
     <Container
       backgroundColor="rgb(255,255,255, 0.6)"
-      width="90%"
+      width="100%"
       height="40rem"
       display="flex"
       justifyContent="center"
       flexDirection="column"
       alignItems="center"
       padding="1rem"
+      margin="0 auto"
     >
       {/* Container to display rosters */}
       <Container
