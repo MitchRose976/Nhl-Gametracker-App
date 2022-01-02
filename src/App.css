@@ -1,5 +1,4 @@
 
-
 .background-image {
   object-fit: fill;
   width: 100%;
@@ -27,4 +26,52 @@ thead tr {
   box-shadow: 0 1px black;
   background-color: white;
 }
+
+/* Styles the team logo in the scoreboard */
+.team-logo {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Abbreviated name, hidden for larger screen sizes */
+.abbreviated-title {
+  display: none;
+}
+
+
+@media screen and (max-width: 600px) {
+  
+  /* Show abbreviated team name */
+  .abbreviated-title {
+    display: block;
+  }
+
+  /* Hide Full team name */
+  .full-title {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  
+  /* Container that holds Scoreboard */
+  .scoreboard-container {
+    /* width: 80% !important; */
+  }
+  
+  /* Accordion Item */
+  .accordion-item h2 button {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  /* Hide abbreviated team name */
+  .abbreviated-title {
+    display: none;
+  }
+}
+
 

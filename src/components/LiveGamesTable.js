@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Container from "../UX/Container";
 import Accordion from "react-bootstrap/Accordion";
 import styled from "styled-components";
+import SVG, { Props as SVGProps } from "react-inlinesvg";
 
 function LiveGamesTable() {
   // Function to format current date to yyyy-mm-dd
   const formatYearMonthDay = (date) => date.toISOString().slice(0, 10);
   let currentDay = formatYearMonthDay(new Date());
   // url to fetch info for all live games
-  let url = `https://nhl-score-api.herokuapp.com/api/scores?startDate=2021-12-30&endDate=2021-12-30`;
+  let url = `https://nhl-score-api.herokuapp.com/api/scores?startDate=2022-1-2&endDate=2022-1-2`;
   // url to fetch teams array that will be used to get all teams in
   // league
   let teamUrl = "https://statsapi.web.nhl.com/api/v1/teams";
@@ -88,7 +89,7 @@ function LiveGamesTable() {
   };
 
   // Collect all info from live games (status, team names, team logos, score, etc)
-  // and push an accordion item for each game to an array to be rendered 
+  // and push an accordion item for each game to an array to be rendered
   let liveGameData = [];
   if (liveGames && teamLogos) {
     //console.log("liveGames: ", liveGames[0].games[1]);
@@ -101,6 +102,8 @@ function LiveGamesTable() {
       console.log("game scores: ", game.scores);
       let gameStatus = setGameStatus(game);
       console.log("gameStatus: ", gameStatus);
+      let awayTeamLogoURL;
+      let homeTeamLogoURL;
       let awayTeamLogo;
       let homeTeamLogo;
       let homeTeamName;
@@ -113,18 +116,18 @@ function LiveGamesTable() {
       let homeTeamScore = game.scores[`${homeTeamAbbreviation}`];
       let key = parseInt(`${game.teams.away.id}${game.teams.home.id}`);
       console.log("key: ", key);
-    //   console.log(
-    //     `${awayTeamAbbreviation} ${awayTeamScore} : ${homeTeamScore} ${homeTeamAbbreviation}`
-    //   );
+      //   console.log(
+      //     `${awayTeamAbbreviation} ${awayTeamScore} : ${homeTeamScore} ${homeTeamAbbreviation}`
+      //   );
       let score;
       for (let i = 0; i < teamLogos.length; i++) {
         if (game.teams.away.id === teamLogos[i].id) {
-          awayTeamLogo = teamLogos[i].logo;
+          awayTeamLogoURL = teamLogos[i].logo;
           awayTeamName = teamLogos[i].name;
-          //console.log("awayTeamLogo: ", awayTeamLogo);
+          console.log("awayTeamLogo: ", awayTeamLogoURL);
           console.log("awayTeamName: ", awayTeamName);
         } else if (game.teams.home.id === teamLogos[i].id) {
-          homeTeamLogo = teamLogos[i].logo;
+          homeTeamLogoURL = teamLogos[i].logo;
           homeTeamName = teamLogos[i].name;
           //console.log("homeTeamLogo: ", homeTeamLogo);
           console.log("homeTeamName: ", homeTeamName);
@@ -132,10 +135,40 @@ function LiveGamesTable() {
       }
       // Push the live game data to the array
       liveGameData.push(
-        <Accordion.Item eventKey={`${key}`}>
+        <Accordion.Item
+          eventKey={`${key}`}
+          key={`${key}`}
+          className="accordion-item-2"
+        >
           <Accordion.Header>
             {/* {gameStatus}    {awayTeamName}  {awayTeamScore} : {homeTeamScore}  {homeTeamName} */}
-            
+            {/* Game Status */}
+            <GameStatusDiv>
+              <GameStatus>{gameStatus}</GameStatus>
+            </GameStatusDiv>
+            {/* Container to hold team names and scores */}
+            <Container display="flex" flexDirection="row">
+              {/* Away Team Name */}
+              <TeamName className="full-title">{awayTeamName}</TeamName>
+              <TeamName className="abbreviated-title">
+                {awayTeamAbbreviation}
+              </TeamName>
+              {/* Away Team Logo */}
+              <TeamLogoDiv>
+                <SVG src={awayTeamLogoURL} className="team-logo" />
+              </TeamLogoDiv>
+              {/* Away Team Score : Home Team Score */}
+              <Score>{awayTeamScore}</Score> : <Score>{homeTeamScore}</Score>
+              {/* Home Team Logo */}
+              <TeamLogoDiv>
+                <SVG src={homeTeamLogoURL} className="team-logo" />
+              </TeamLogoDiv>
+              {/* Home Team Name */}
+              <TeamName className="full-title">{homeTeamName}</TeamName>
+              <TeamName className="abbreviated-title">
+                {homeTeamAbbreviation}
+              </TeamName>
+            </Container>
           </Accordion.Header>
           <Accordion.Body>"Proident sunt Lorem qui amet"</Accordion.Body>
         </Accordion.Item>
@@ -147,9 +180,10 @@ function LiveGamesTable() {
 
   return (
     <Container
+      className="scoreboard-container"
       backgroundColor="rgb(255,255,255, 0.6)"
-      width="70%"
-      height="45rem"
+    width="70%"
+    height="30%"
       display="flex"
       margin="2rem 0 0 0"
       justifyContent="center"
@@ -158,7 +192,14 @@ function LiveGamesTable() {
     >
       <ScoreboardHeader>Scoreboard</ScoreboardHeader>
       <Accordion>
-        {liveGameData ? liveGameData : "Error while loading data"}
+        <Accordion.Item>
+          <Accordion.Header>Show Scores</Accordion.Header>
+          <Accordion.Body>
+            <Accordion>
+              {liveGameData ? liveGameData : "Error while loading data"}
+            </Accordion>
+          </Accordion.Body>
+        </Accordion.Item>
       </Accordion>
     </Container>
   );
@@ -168,6 +209,36 @@ const ScoreboardHeader = styled.h1`
   font-family: "Heebo", sans-serif;
   font-size: 2rem;
   text-align: center;
+`;
+
+const GameStatusDiv = styled.div`
+  height: 2.5rem;
+  width: 6rem;
+  border: 1px solid blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const GameStatus = styled.span`
+  font-size: 0.9rem;
+`;
+
+const TeamLogoDiv = styled.div`
+  height: 2rem;
+  min-width: 3rem;
+  ${"" /* border: 1px solid blue; */}
+`;
+
+const TeamName = styled.span`
+  font-size: 1.1rem;
+  margin: 0 0.5rem;
+`;
+
+const Score = styled.span`
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0 0.5rem;
 `;
 
 export default LiveGamesTable;

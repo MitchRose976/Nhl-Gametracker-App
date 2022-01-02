@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     width: ${props => props.width};
+    max-width: ${props => props.maxWidth};
+    min-width: ${props => props.minWidth};
     height: ${props => props.height};
     padding: ${props => props.padding};
     margin: ${props => props.margin};
