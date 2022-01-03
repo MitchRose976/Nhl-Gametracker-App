@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Container from "../UX/Container";
-import Accordion from "react-bootstrap/Accordion";
+import { Accordion, Table } from "react-bootstrap";
 import styled from "styled-components";
 import SVG, { Props as SVGProps } from "react-inlinesvg";
 
@@ -92,20 +92,15 @@ function LiveGamesTable() {
   // and push an accordion item for each game to an array to be rendered
   let liveGameData = [];
   if (liveGames && teamLogos) {
-    //console.log("liveGames: ", liveGames[0].games[1]);
-    console.log("liveGames: ", liveGames);
+    // Array to hold all games
     let allGames = liveGames[0].games;
-    console.log("allGames", allGames);
-
     allGames.forEach((game) => {
       console.log("game: ", game);
-      console.log("game scores: ", game.scores);
+      //console.log("game scores: ", game.scores);
       let gameStatus = setGameStatus(game);
-      console.log("gameStatus: ", gameStatus);
+      //console.log("gameStatus: ", gameStatus);
       let awayTeamLogoURL;
       let homeTeamLogoURL;
-      let awayTeamLogo;
-      let homeTeamLogo;
       let homeTeamName;
       let awayTeamName;
       // The abbreviation is used to destructure the object to
@@ -115,22 +110,14 @@ function LiveGamesTable() {
       let awayTeamScore = game.scores[`${awayTeamAbbreviation}`];
       let homeTeamScore = game.scores[`${homeTeamAbbreviation}`];
       let key = parseInt(`${game.teams.away.id}${game.teams.home.id}`);
-      console.log("key: ", key);
-      //   console.log(
-      //     `${awayTeamAbbreviation} ${awayTeamScore} : ${homeTeamScore} ${homeTeamAbbreviation}`
-      //   );
-      let score;
+      //   loop through teamLogos and set svg logo and name of team
       for (let i = 0; i < teamLogos.length; i++) {
         if (game.teams.away.id === teamLogos[i].id) {
           awayTeamLogoURL = teamLogos[i].logo;
           awayTeamName = teamLogos[i].name;
-          console.log("awayTeamLogo: ", awayTeamLogoURL);
-          console.log("awayTeamName: ", awayTeamName);
         } else if (game.teams.home.id === teamLogos[i].id) {
           homeTeamLogoURL = teamLogos[i].logo;
           homeTeamName = teamLogos[i].name;
-          //console.log("homeTeamLogo: ", homeTeamLogo);
-          console.log("homeTeamName: ", homeTeamName);
         }
       }
       // Push the live game data to the array
@@ -138,7 +125,6 @@ function LiveGamesTable() {
         <Accordion.Item
           eventKey={`${key}`}
           key={`${key}`}
-          className="accordion-item-2"
         >
           <Accordion.Header>
             {/* {gameStatus}    {awayTeamName}  {awayTeamScore} : {homeTeamScore}  {homeTeamName} */}
@@ -170,36 +156,64 @@ function LiveGamesTable() {
               </TeamName>
             </Container>
           </Accordion.Header>
-          <Accordion.Body>"Proident sunt Lorem qui amet"</Accordion.Body>
+          <Accordion.Body className="accordion-body">
+            <Table striped bordered hover responsive className="game-stats-table">
+              <thead>
+                <tr>
+                  <th>Period</th>
+                  <th>Team</th>
+                  <th>Time</th>
+                  <th>Goal</th>
+                  <th>Assists</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td colSpan={2}>Larry the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </Table>
+          </Accordion.Body>
         </Accordion.Item>
       );
     });
-    console.log("liveGameData", liveGameData);
-    console.log("_________________________________");
   }
 
   return (
     <Container
-      className="scoreboard-container"
-      backgroundColor="rgb(255,255,255, 0.6)"
-    width="70%"
-    height="30%"
-      display="flex"
-      margin="2rem 0 0 0"
-      justifyContent="center"
-      flexDirection="column"
-      padding="1rem"
+      //   className="scoreboard-container"
+      //   backgroundColor="rgb(255,255,255, 0.6)"
+      //   width="70%"
+      //   height="30%"
+      //   display="flex"
+      //   margin="2rem 0 0 0"
+      //   justifyContent="center"
+      //   alignItems="center"
+      //   flexDirection="column"
+      //   padding="1rem"
+      // border="1px solid blue"
+    
+      margin="2rem auto"
     >
       <ScoreboardHeader>Scoreboard</ScoreboardHeader>
       <Accordion>
-        <Accordion.Item>
-          <Accordion.Header>Show Scores</Accordion.Header>
-          <Accordion.Body>
-            <Accordion>
-              {liveGameData ? liveGameData : "Error while loading data"}
-            </Accordion>
-          </Accordion.Body>
-        </Accordion.Item>
+        {liveGameData ? liveGameData : "Error while loading data"}
       </Accordion>
     </Container>
   );
@@ -209,15 +223,22 @@ const ScoreboardHeader = styled.h1`
   font-family: "Heebo", sans-serif;
   font-size: 2rem;
   text-align: center;
+  color: white;
 `;
 
 const GameStatusDiv = styled.div`
   height: 2.5rem;
   width: 6rem;
+  font-weight: bold;
   border: 1px solid blue;
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 400px) {
+    margin-bottom: 0.5rem;
+    border: none;
+    text-align: center;
+  }
 `;
 
 const GameStatus = styled.span`
