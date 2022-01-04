@@ -95,10 +95,8 @@ function LiveGamesTable() {
     // Array to hold all games
     let allGames = liveGames[0].games;
     allGames.forEach((game) => {
-      console.log("game: ", game);
-      //console.log("game scores: ", game.scores);
+      //console.log("game: ", game);
       let gameStatus = setGameStatus(game);
-      //console.log("gameStatus: ", gameStatus);
       let awayTeamLogoURL;
       let homeTeamLogoURL;
       let homeTeamName;
@@ -120,12 +118,47 @@ function LiveGamesTable() {
           homeTeamName = teamLogos[i].name;
         }
       }
+      let goals = [];
+      //console.log("goalsArray: ", goals);
+      //console.log("goals Length: ", allGames.length);
+      if (game.status.state !== "POSTPONED") {
+        
+        if (game.goals) {
+          for (let i = 0; i < game.goals.length; i++) {
+              //console.log("length: ", game.goals.length);
+              console.log("game: ", game);
+            goals.push(
+              <tr>
+                {/* Period */}
+                <td>{game.goals[i].period}</td>
+                {/* Team */}
+                <td>{game.goals[i].team}</td>
+                {/* Time */}
+                <td>'{game.goals[i].min}</td>
+                {/* Goal Scorer */}
+                <td>
+                  {game.goals[i].scorer.player} ({game.goals[i].scorer.seasonTotal}) {game.goals[i].strength ? game.goals[i].strength : ""}
+                </td>
+                {/* Assists */}
+                <td className="assists-cell">
+                {
+                    game.goals[i].assists[0] ? `${game.goals[i].assists[0].player} (${game.goals[i].assists[0].seasonTotal})` : ""
+                } 
+                {
+                    game.goals[i].assists[1] ? `, ${game.goals[i].assists[1].player} (${game.goals[i].assists[1].seasonTotal})` : ""
+                }
+                </td>
+              </tr>
+            );
+          }
+        } else {
+            console.log("no goals");
+        }
+      }
+      console.log("_________________________");
       // Push the live game data to the array
       liveGameData.push(
-        <Accordion.Item
-          eventKey={`${key}`}
-          key={`${key}`}
-        >
+        <Accordion.Item eventKey={`${key}`} key={`${key}`}>
           <Accordion.Header>
             {/* {gameStatus}    {awayTeamName}  {awayTeamScore} : {homeTeamScore}  {homeTeamName} */}
             {/* Game Status */}
@@ -156,8 +189,13 @@ function LiveGamesTable() {
               </TeamName>
             </Container>
           </Accordion.Header>
-          <Accordion.Body className="accordion-body">
-            <Table striped bordered hover responsive className="game-stats-table">
+          <Accordion.Body>
+            <Table
+              striped
+              bordered
+              hover
+              responsive
+            >
               <thead>
                 <tr>
                   <th>Period</th>
@@ -167,27 +205,7 @@ function LiveGamesTable() {
                   <th>Assists</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td colSpan={2}>Larry the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-              </tbody>
+              <tbody>{goals ? goals : null}</tbody>
             </Table>
           </Accordion.Body>
         </Accordion.Item>
@@ -197,18 +215,18 @@ function LiveGamesTable() {
 
   return (
     <Container
-      //   className="scoreboard-container"
+      className="scoreboard-container"
       //   backgroundColor="rgb(255,255,255, 0.6)"
       //   width="70%"
       //   height="30%"
-      //   display="flex"
+      //display="flex"
       //   margin="2rem 0 0 0"
-      //   justifyContent="center"
-      //   alignItems="center"
-      //   flexDirection="column"
+      //justifyContent="center"
+      //alignItems="center"
+      //flexDirection="column"
       //   padding="1rem"
-      // border="1px solid blue"
-    
+      overflow="hidden"
+      border="1px solid blue"
       margin="2rem auto"
     >
       <ScoreboardHeader>Scoreboard</ScoreboardHeader>
@@ -228,7 +246,7 @@ const ScoreboardHeader = styled.h1`
 
 const GameStatusDiv = styled.div`
   height: 2.5rem;
-  width: 6rem;
+  min-width: 6rem;
   font-weight: bold;
   border: 1px solid blue;
   display: flex;

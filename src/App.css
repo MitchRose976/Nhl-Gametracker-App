@@ -28,9 +28,9 @@ thead tr {
 }
 
 .accordion-item {
-  max-width: 55rem;
+  max-width: inherit;
   overflow: hidden;
-  position: relative;
+  position: relative !important;
 }
 
 /* Styles the team logo in the scoreboard */
@@ -45,16 +45,29 @@ thead tr {
   display: none;
 }
 
-.accordion-body {
+
+/* .accordion-collapse {
   display: flex;
+  max-width: inherit;
   justify-content: center !important;
   align-items: center !important;
   position: relative !important;
+  border: 1px solid blue; 
+  max-width: inherit;
+} */
+
+
+.accordion-body {
+  
+  border: 1px solid red; 
 }
 
-.game-stats-table {
-  max-width: 90%;
+.assists-cell {
+  max-width: 10rem;
 }
+ 
+
+
 
 
 @media screen and (max-width: 600px) {
@@ -77,6 +90,11 @@ thead tr {
     display: flex !important;
     flex-direction: column !important;
   }
+
+  /* Scoreboard Container for Live scores */
+  .scoreboard-container {
+    max-width: 90% !important;
+  }
 }
 
 @media screen and (max-width: 280px) {
@@ -84,6 +102,7 @@ thead tr {
   .abbreviated-title {
     display: none;
   }
+
 }
 
 
