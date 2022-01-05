@@ -6,10 +6,16 @@ const Navbar = () => {
   // State to control hamburger menu
   const [isOpen, setisOpen] = useState(false);
 
+  // Style to spin arrow 180deg
+  const style = {
+    transform: isOpen ? 'rotate(180deg)' : '', 
+    transition: 'transform 0.5s ease', // smooth transition
+   }
+
   return (
     <Nav isOpen={isOpen}>
       <LogoDiv onClick={() => setisOpen(!isOpen)}>
-          <HiArrowRight/>
+          <HiArrowRight style={style}/>
       </LogoDiv>
       <Menu isOpen={isOpen}>
         <MenuItem href="#about">Live Scores</MenuItem>
@@ -31,7 +37,7 @@ const Nav = styled.div`
   width: ${({ isOpen }) => (isOpen ? "10%" : "5%")};
   transition: ${({ isOpen }) => (isOpen ? "width 0.5s" : "width 0.5s")};
   height: 200vh;
-  border: 1px solid red;
+  border-right: ${({ isOpen }) => (isOpen ? "1px solid var(--RedCrayola)" : "1px solid white")};
   background-color: var(--EerieBlack);
   
   @media (max-width: 768px) {
@@ -47,10 +53,10 @@ const LogoDiv = styled.div`
   width: 100%;
   height: 5rem;
   position: sticky;
-  border: 1px solid red;
   text-align: center;
   color: white;
   font-size: 3rem;
+  cursor: pointer;
 
   &:hover {
     color: var(--RedCrayola);
@@ -75,8 +81,6 @@ const Menu = styled.div`
   position: relative;
   flex-direction: column;
   height: 30%;
-  border: 1px solid yellow;
-  ${'' /* margin-top: 2rem; */}
 
   @media (max-width: 768px) {
     overflow: hidden;
