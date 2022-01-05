@@ -6,12 +6,14 @@ import FetchRoster from './components/FetchRoster'
 import RosterTable from './components/RosterTable'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LiveGamesTable from './components/LiveGamesTable';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
     <PageWrapper className="wrapper">
       {/* <RosterTable/> */}
       {/* <FetchRoster/> */}
+      <NavBar/>
       <LiveGamesTable/>
     </PageWrapper>
   );
@@ -25,7 +27,9 @@ const PageWrapper = styled.div`
   -o-background-size: cover;
   height: 200vh;
   display: flex;
-  justify-content: center;
+  ${'' /* justify-content: center; */}
+  align-items: center;
+  flex-direction: column;
 `
 
 export default App;
