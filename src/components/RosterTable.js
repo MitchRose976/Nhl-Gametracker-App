@@ -54,6 +54,7 @@ const RosterTable = ({ teamId }) => {
         //console.log(playerStatsData);
         playerStatsData = playerStatsData.map((player) => player.data.stats[0].splits[0]);
         setPlayerStats(playerStatsData);
+        console.log("playerStats in func: ", playerStats);
       };
       getPlayerInfo();
       // Fetch all playerStats using playerStatsPromises array

@@ -15,9 +15,9 @@ function App() {
     <PageWrapper className="wrapper">
       <NavBar/>
       {/* <RosterTable/> */}
-      {/* <FetchRoster/> */}
+      <FetchRoster/>
       {/* <LiveGamesTable/> */}
-      <Standings/>
+      {/* <Standings/> */}
     </PageWrapper>
   );
 }

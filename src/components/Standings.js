@@ -67,7 +67,6 @@ function Standings() {
             <tbody>
               {standings
                 ? standings[2].teamRecords.map((team) => {
-                    console.log(team);
                     return (
                       <tr key={team.team.id}>
                         {/* Team */}
@@ -169,7 +168,6 @@ function Standings() {
             <tbody>
               {standings
                 ? standings[3].teamRecords.map((team) => {
-                    console.log(team);
                     return (
                       <tr key={team.team.id}>
                         {/* Team */}
@@ -274,7 +272,6 @@ function Standings() {
             <tbody>
               {standings
                 ? standings[1].teamRecords.map((team) => {
-                    console.log(team);
                     return (
                       <tr key={team.team.id}>
                         {/* Team */}
@@ -376,7 +373,6 @@ function Standings() {
             <tbody>
               {standings
                 ? standings[0].teamRecords.map((team) => {
-                    console.log(team);
                     return (
                       <tr key={team.team.id}>
                         {/* Team */}

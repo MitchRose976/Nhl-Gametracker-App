@@ -10,7 +10,7 @@ function LiveGamesTable() {
   const formatYearMonthDay = (date) => date.toISOString().slice(0, 10);
   let currentDay = formatYearMonthDay(new Date());
   // url to fetch info for all live games
-  let url = `https://nhl-score-api.herokuapp.com/api/scores?startDate=2022-1-2&endDate=2022-1-2`;
+  let url = `https://nhl-score-api.herokuapp.com/api/scores?startDate=2022-1-5&endDate=2022-1-5`;
   // url to fetch teams array that will be used to get all teams in
   // league
   let teamUrl = "https://statsapi.web.nhl.com/api/v1/teams";
@@ -119,8 +119,6 @@ function LiveGamesTable() {
         }
       }
       let goals = [];
-      //console.log("goalsArray: ", goals);
-      //console.log("goals Length: ", allGames.length);
       if (game.status.state !== "POSTPONED") {
         
         if (game.goals) {
@@ -155,7 +153,6 @@ function LiveGamesTable() {
             console.log("no goals");
         }
       }
-      console.log("_________________________");
       // Push the live game data to the array
       liveGameData.push(
         <Accordion.Item eventKey={`${key}`} key={`${key}`}>
