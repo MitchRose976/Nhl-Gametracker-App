@@ -160,7 +160,6 @@ function LiveGamesTable() {
       liveGameData.push(
         <Accordion.Item eventKey={`${key}`} key={`${key}`}>
           <Accordion.Header>
-            {/* {gameStatus}    {awayTeamName}  {awayTeamScore} : {homeTeamScore}  {homeTeamName} */}
             {/* Game Status */}
             <GameStatusDiv>
               <GameStatus>{gameStatus}</GameStatus>
@@ -216,7 +215,7 @@ function LiveGamesTable() {
   return (
     <Container
       className="scoreboard-container"
-      //   backgroundColor="rgb(255,255,255, 0.6)"
+      backgroundColor="var(--EerieBlack)"
       //   width="70%"
       //   height="30%"
       //display="flex"
@@ -226,7 +225,8 @@ function LiveGamesTable() {
       //flexDirection="column"
       //   padding="1rem"
       overflow="hidden"
-      border="1px solid blue"
+      borderRadius="1rem"
+    //   border="1px solid blue"
       margin="2rem auto"
     >
       <ScoreboardHeader>Scoreboard</ScoreboardHeader>
@@ -240,6 +240,7 @@ function LiveGamesTable() {
 const ScoreboardHeader = styled.h1`
   font-family: "Heebo", sans-serif;
   font-size: 2rem;
+  margin-top: 1rem;
   text-align: center;
   color: white;
 `;
@@ -248,7 +249,7 @@ const GameStatusDiv = styled.div`
   height: 2.5rem;
   min-width: 6rem;
   font-weight: bold;
-  border: 1px solid blue;
+  ${'' /* border: 1px solid blue; */}
   display: flex;
   justify-content: center;
   align-items: center;

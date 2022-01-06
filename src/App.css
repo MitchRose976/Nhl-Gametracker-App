@@ -68,17 +68,46 @@ thead tr {
 } */
 
 
-.accordion-body {
-  
+/* .accordion-body {
   border: 1px solid red; 
-}
+} */
 
+/* Sets max width for the assists cell in the LiveGamesTable */
 .assists-cell {
   max-width: 10rem;
 }
  
 
 
+/* Standing.JS */
+
+/* Styles tabs menu */
+.tab-list {
+  text-align: center;
+  color: var(----RedCrayola);
+}
+
+/* Styles individual tab */
+.nav-item {
+  color: var(--RedCrayola) !important;
+}
+
+/* Division standings tabs (Metro, Atlantic, Central, etc.) */
+.nav-link {
+  color: white !important;
+  font-weight: 500;
+  /* text-decoration: none !important; */
+}
+
+.nav-link.active {
+  background-color: var(--RedCrayola) !important;
+}
+
+
+/* Sets margin to the bottom table in the Conforence Tabs in Standings.js */
+.division-table {
+  margin-top: 2rem;
+}
 
 
 @media screen and (max-width: 600px) {

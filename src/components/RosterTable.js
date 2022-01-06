@@ -41,26 +41,41 @@ const RosterTable = ({ teamId }) => {
       );
       // Fetch player bio using playerInfoPromises array
       let getPlayerInfo = async () => {
-        let data = await Promise.all(playerInfoPromises);
-        data = data.map((player) => player.data.people[0]);
-        setPlayerInfo(data);
+        // Player Info
+        let playerInfoData = await Promise.all(playerInfoPromises).then(result => {
+            return result;
+        });
+        playerInfoData = playerInfoData.map((player) => player.data.people[0]);
+        setPlayerInfo(playerInfoData);
+        // Player Stats
+        let playerStatsData = await Promise.all(playerStatsPromises).then(result => {
+            return result;
+        });
+        //console.log(playerStatsData);
+        playerStatsData = playerStatsData.map((player) => player.data.stats[0].splits[0]);
+        setPlayerStats(playerStatsData);
       };
       getPlayerInfo();
       // Fetch all playerStats using playerStatsPromises array
-      let getPlayerStats = async () => {
-        let data = await Promise.all(playerStatsPromises);
-        data = data.map((player) => player.data.stats[0].splits[0]);
-        setPlayerStats(data);
-      };
-      getPlayerStats();
+    //   let getPlayerStats = async () => {
+    //     let playerStatsData = await Promise.all(playerStatsPromises);
+    //     playerStatsData = playerStatsData.map((player) => player.data.stats[0].splits[0]);
+    //     setPlayerStats(playerStatsData);
+    //   };
+    //   getPlayerStats();
     });
   }, [url]);
+
+//   console.log("playerInfo: ", playerInfo);
+//   console.log("playerStats: ", playerStats);
 
   // Create array and loop through team roster and push a <tr> for each player
   // to hold their info and stats
   let playerRows = [];
   let goalieRows = [];
   if (playerInfo && playerStats) {
+    console.log("playerInfo: ", playerInfo);
+    console.log("playerStats: ", playerStats);
     for (let i = 0; i < playerInfo.length; i++) {
       // Check if they are a player and push to player array
       if (

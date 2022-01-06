@@ -7,14 +7,17 @@ import RosterTable from './components/RosterTable'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LiveGamesTable from './components/LiveGamesTable';
 import NavBar from './components/NavBar';
+import Standings from './components/Standings';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <PageWrapper className="wrapper">
+      <NavBar/>
       {/* <RosterTable/> */}
       {/* <FetchRoster/> */}
-      <NavBar/>
-      <LiveGamesTable/>
+      {/* <LiveGamesTable/> */}
+      <Standings/>
     </PageWrapper>
   );
 }

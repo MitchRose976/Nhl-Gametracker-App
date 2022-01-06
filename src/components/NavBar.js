@@ -34,14 +34,14 @@ const Nav = styled.div`
   position: absolute;
   left: 0;
   top: 0;
-  width: ${({ isOpen }) => (isOpen ? "10%" : "5%")};
+  width: ${({ isOpen }) => (isOpen ? "9rem" : "4rem")};
   transition: ${({ isOpen }) => (isOpen ? "width 0.5s" : "width 0.5s")};
   height: 200vh;
   border-right: ${({ isOpen }) => (isOpen ? "1px solid var(--RedCrayola)" : "1px solid white")};
   background-color: var(--EerieBlack);
   
   @media (max-width: 768px) {
-    padding-right: 3rem !important;
+    ${'' /* padding-right: 3rem !important; */}
   }
 `;
 
@@ -69,7 +69,7 @@ const LogoDiv = styled.div`
   }
 
   @media (max-width: 280px) {
-    font-size: 1.2rem;
+    ${'' /* font-size: 1.2rem; */}
   }
 `;
 
