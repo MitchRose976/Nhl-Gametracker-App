@@ -12,9 +12,13 @@ const RosterTable = ({ teamId }) => {
   const [playerStats, setPlayerStats] = useState(null);
   // current season
   let currentYear = new Date().getFullYear();
-  let currentSeason = currentYear.toString().concat(currentYear + 1);
-  // 1st argument - function to run when monitored variable changes
-  // 2nd argument - variable to monitor
+  let currentSeason = (currentYear - 1).toString().concat(currentYear);
+  // Increment the season year by 1 to get latest season stats
+  // 2021/2022 => 2022/2023
+  let newSeasonStart = new Date().toLocaleDateString();
+  if (newSeasonStart === `7/15/${currentYear}`) {
+      currentSeason = (currentYear).toString().concat(currentYear + 1);
+  }
   // Fetch API from NHL
   useEffect(() => {
     let result;
@@ -51,24 +55,12 @@ const RosterTable = ({ teamId }) => {
         let playerStatsData = await Promise.all(playerStatsPromises).then(result => {
             return result;
         });
-        //console.log(playerStatsData);
         playerStatsData = playerStatsData.map((player) => player.data.stats[0].splits[0]);
         setPlayerStats(playerStatsData);
-        console.log("playerStats in func: ", playerStats);
       };
       getPlayerInfo();
-      // Fetch all playerStats using playerStatsPromises array
-    //   let getPlayerStats = async () => {
-    //     let playerStatsData = await Promise.all(playerStatsPromises);
-    //     playerStatsData = playerStatsData.map((player) => player.data.stats[0].splits[0]);
-    //     setPlayerStats(playerStatsData);
-    //   };
-    //   getPlayerStats();
     });
   }, [url]);
-
-//   console.log("playerInfo: ", playerInfo);
-//   console.log("playerStats: ", playerStats);
 
   // Create array and loop through team roster and push a <tr> for each player
   // to hold their info and stats
