@@ -11,14 +11,13 @@
   height: 100%;
 }
 
-/* Nav */
+/* ---------- FetchRoster.JS --------- */
 
 /* Team Menu Dropdown */
 .team-dropdown {
   columns: 2;
   -webkit-columns: 2;
   -moz-columns: 2;
-  
 }
 
 /* Submit Button Beside Team Menu Dropdown */
@@ -26,14 +25,25 @@
   margin-left: 1rem;
 }
 
-/* Adds sticky header to tables so viewing stats for players
-   is easier */
+/* Adds sticky header to tables so viewing stats for players */
+/* is easier */
 thead tr {
   position: sticky;
   top: 0;
   box-shadow: 0 1px black;
   background-color: white;
 }
+
+/* Sets first child of all tables sticky so viewing stats */
+/* for teams and players is easier */
+tbody tr td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 99;
+  background: white;
+}
+
+/* ---------- LiveGamesTable.JS --------- */
 
 .accordion-item {
   max-width: inherit;
@@ -52,22 +62,6 @@ thead tr {
 .abbreviated-title {
   display: none;
 }
-
-
-/* .accordion-collapse {
-  display: flex;
-  max-width: inherit;
-  justify-content: center !important;
-  align-items: center !important;
-  position: relative !important;
-  border: 1px solid blue; 
-  max-width: inherit;
-} */
-
-
-/* .accordion-body {
-  border: 1px solid red; 
-} */
 
 /* Sets max width for the assists cell in the LiveGamesTable */
 .assists-cell {

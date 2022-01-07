@@ -67,8 +67,6 @@ const RosterTable = ({ teamId }) => {
   let playerRows = [];
   let goalieRows = [];
   if (playerInfo && playerStats) {
-    console.log("playerInfo: ", playerInfo);
-    console.log("playerStats: ", playerStats);
     for (let i = 0; i < playerInfo.length; i++) {
       // Check if they are a player and push to player array
       if (
