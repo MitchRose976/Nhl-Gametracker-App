@@ -9,15 +9,17 @@ import LiveGamesTable from './components/LiveGamesTable';
 import NavBar from './components/NavBar';
 import Standings from './components/Standings';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import TopTenStats from './components/TopTenStats';
 
 function App() {
   return (
     <PageWrapper className="wrapper">
       <NavBar/>
       {/* <RosterTable/> */}
-      <FetchRoster/>
+      {/* <FetchRoster/> */}
       {/* <LiveGamesTable/> */}
       {/* <Standings/> */}
+      <TopTenStats/>
     </PageWrapper>
   );
 }

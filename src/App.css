@@ -25,6 +25,8 @@
   margin-left: 1rem;
 }
 
+/* ---------- Table Customization --------- */
+
 /* Adds sticky header to tables so viewing stats for players */
 /* is easier */
 thead tr {
@@ -40,8 +42,23 @@ tbody tr td:first-child {
   position: sticky;
   left: 0;
   z-index: 99;
-  background: white;
+  background: var(--bs-table-bg);
 }
+
+/* Customized all scrollbars */
+/* html::-webkit-scrollbar {
+
+}
+
+html::-webkit-scrollbar-track {
+  
+}
+
+html::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+    background-color:#fff;
+    -webkit-box-shadow: inset 0 0 6px rgba(90,90,90,0.7);
+} */
 
 /* ---------- LiveGamesTable.JS --------- */
 

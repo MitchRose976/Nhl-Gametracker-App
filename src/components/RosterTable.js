@@ -233,7 +233,7 @@ const RosterTable = ({ teamId }) => {
         overflowX="auto"
       >
         {/* Table for Players */}
-        <Table striped bordered hover>
+        <Table striped bordered hover variant="dark">
           <thead>
             <tr>
               <th>Player</th>
@@ -267,7 +267,7 @@ const RosterTable = ({ teamId }) => {
           <tbody>{playerRows ? playerRows : "Error while loading data"}</tbody>
         </Table>
         {/* Table for Goalies */}
-        <Table striped bordered hover>
+        <Table striped bordered hover variant="dark">
           <thead>
             <tr>
               <th>Goalie</th>

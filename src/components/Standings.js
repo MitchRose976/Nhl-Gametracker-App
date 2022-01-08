@@ -9,7 +9,8 @@ function Standings() {
 
   const [standings, setStandings] = useState(null);
   useEffect(() => {
-    axios.get(url).then((response) => {
+    axios.get(url)
+    .then((response) => {
       setStandings(response.data.records);
     });
   }, []);
