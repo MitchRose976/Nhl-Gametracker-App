@@ -52,7 +52,7 @@ const FetchRoster = () => {
       flexDirection="column"
       padding="1rem"
     >
-      <Container display="flex" justify="center" margin="0 0 2rem 0">
+      
         {/* Bootstrap Dropdown */}
         <Dropdown
           onSelect={handleSelectTeam}
@@ -75,7 +75,7 @@ const FetchRoster = () => {
             </Dropdown.Menu>
           </Collapse>
         </Dropdown>
-      </Container>
+      
       <RosterTable teamId={selectedTeam ? selectedTeam.id : ""} />
     </Container>
   );

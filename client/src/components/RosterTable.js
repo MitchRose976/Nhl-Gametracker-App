@@ -222,12 +222,13 @@ const RosterTable = ({ teamId }) => {
       justifyContent="center"
       flexDirection="column"
       alignItems="center"
-      padding="1rem"
+      // padding="1rem"
       margin="0 auto"
     >
       {/* Container to display rosters */}
       <Container
-        height="35rem"
+        // height="35rem"
+        margin="1rem 0 0 0"
         width="100%"
         backgroundColor="rgb(255,255,255, 0.8)"
         overflowX="auto"

@@ -1,22 +1,31 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { HiArrowRight } from "react-icons/hi";
+import { GoThreeBars } from "react-icons/go";
 
 const Navbar = () => {
   // State to control hamburger menu
   const [isOpen, setisOpen] = useState(false);
 
   // Style to spin arrow 180deg
-  const style = {
+  const arrowStyle = {
     transform: isOpen ? 'rotate(180deg)' : '', 
     transition: 'transform 0.5s ease', // smooth transition
+   }
+   // Style to hamburger spin 180deg
+  const hamburgerStyle = {
+    transform: isOpen ? 'rotate(360deg)' : '', 
+    transition: 'transform 0.9s ease', // smooth transition
    }
 
   return (
     <Nav isOpen={isOpen}>
       <LogoDiv onClick={() => setisOpen(!isOpen)}>
-          <HiArrowRight style={style}/>
+          <HiArrowRight style={arrowStyle}/>
       </LogoDiv>
+      <HamburgerDiv onClick={() => setisOpen(!isOpen)}>
+          <GoThreeBars style={hamburgerStyle}/>
+      </HamburgerDiv>
       <Menu isOpen={isOpen}>
         <MenuItem href="#about">Live Scores</MenuItem>
         <MenuItem href="#projects">Stats</MenuItem>
@@ -29,7 +38,7 @@ const Navbar = () => {
 // Nav
 const Nav = styled.div`
   text-align: center;
-  background-color: transparent;
+  background-color: ${({ isOpen }) => (isOpen ? "var(--EerieBlack)" : "rgba(20, 20, 20, 0.7)")};
   z-index: 999;
   position: absolute;
   left: 0;
@@ -38,10 +47,16 @@ const Nav = styled.div`
   transition: ${({ isOpen }) => (isOpen ? "width 0.5s" : "width 0.5s")};
   height: 200vh;
   border-right: ${({ isOpen }) => (isOpen ? "1px solid var(--RedCrayola)" : "1px solid white")};
-  background-color: var(--EerieBlack);
   
-  @media (max-width: 768px) {
+  
+  @media (max-width: 500px) {
     ${'' /* padding-right: 3rem !important; */}
+    width: 100%;
+    height: ${({ isOpen }) => (isOpen ? "20rem" : "5rem")};
+    transition: ${({ isOpen }) => (isOpen ? "height 0.5s" : "height 0.5s")};
+    border-bottom: ${({ isOpen }) => (isOpen ? "1px solid var(--RedCrayola)" : "1px solid white")};
+    margin-bottom: 1rem;
+    background-color: rgba(20, 20, 20, 0.7);
   }
 `;
 
@@ -68,8 +83,36 @@ const LogoDiv = styled.div`
     font-size: 1.3rem;
   }
 
-  @media (max-width: 280px) {
-    ${'' /* font-size: 1.2rem; */}
+  @media (max-width: 500px) {
+    display: none;
+  }
+`;
+
+const HamburgerDiv = styled.div`
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; 
+  width: 100%;
+  height: 5rem;
+  position: sticky;
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--RedCrayola);
+    transition: all 0.3s ease-in;
+  }
+
+  span {
+    font-weight: 300;
+    font-size: 1.3rem;
+  }
+
+  @media (max-width: 500px) {
+    display: flex;
   }
 `;
 
@@ -89,6 +132,12 @@ const Menu = styled.div`
     width: 100%;
     max-height: ${({ isOpen }) => (isOpen ? "300px" : "0")};
     transition: max-height 0.3s ease-in;
+  }
+  @media (max-width: 500px) {
+    overflow: visible;
+    max-height: ${({ isOpen }) => (isOpen ? "300px" : "0")};
+    transition: all 0.3s ease-in;
+    margin-top: 3rem;
   }
 `;
 
