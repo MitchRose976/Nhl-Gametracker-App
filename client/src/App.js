@@ -18,9 +18,9 @@ function App() {
     // <Provider store={store}>
       <PageWrapper className="wrapper">
         <NavBar />
-        {/* <FetchRoster/> */}
         <LiveGamesTable/>
-        {/* <Standings/> */}
+        <FetchRoster/>
+        <Standings/>
         {/* <TopTenStats /> */}
       </PageWrapper>
     // </Provider>
@@ -33,7 +33,8 @@ const PageWrapper = styled.div`
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  height: 200vh;
+  min-height: 200vh;
+  ${'' /* height: 100%; */}
   display: flex;
   ${"" /* justify-content: center; */}
   align-items: center;

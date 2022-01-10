@@ -45,7 +45,8 @@ const Nav = styled.div`
   top: 0;
   width: ${({ isOpen }) => (isOpen ? "9rem" : "4rem")};
   transition: ${({ isOpen }) => (isOpen ? "width 0.5s" : "width 0.5s")};
-  height: 200vh;
+  min-height: 200vh;
+  height: 100% !important;
   border-right: ${({ isOpen }) => (isOpen ? "1px solid var(--RedCrayola)" : "1px solid white")};
   
   
@@ -135,8 +136,8 @@ const Menu = styled.div`
   }
   @media (max-width: 500px) {
     overflow: visible;
-    max-height: ${({ isOpen }) => (isOpen ? "300px" : "0")};
-    transition: all 0.3s ease-in;
+    ${'' /* max-height: ${({ isOpen }) => (isOpen ? "300px" : "0")};
+    transition: all 0.3s ease-in; */}
     margin-top: 3rem;
   }
 `;

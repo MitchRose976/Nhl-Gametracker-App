@@ -132,6 +132,28 @@ html::-webkit-scrollbar-thumb {
   }
 }
 
+@media screen and (max-width: 500px) {
+  
+  .team-dropdown {
+    columns: 1;
+    -webkit-columns: 1;
+    -moz-columns: 1;
+  }
+
+  .scoreboard-container {
+    margin-top: 6rem !important;
+    width: 90% !important;
+  }
+
+  .roster-container {
+    width: 90% !important;
+  }
+
+  .standings-container {
+    width: 90% !important;
+  }
+}
+
 @media screen and (max-width: 400px) {
   
   /* Accordion Item */

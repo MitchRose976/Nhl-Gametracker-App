@@ -17,6 +17,7 @@ function Standings() {
 
   return (
     <Container
+      className="standings-container"
       width="50%"
       borderRadius="1rem"
       margin="1rem 0"

@@ -215,11 +215,12 @@ const RosterTable = ({ teamId }) => {
 
   return (
     <Container
-      backgroundColor="rgb(255,255,255, 0.6)"
+      backgroundColor="var(--EerieBlack)"
       width="100%"
-      height="40rem"
+      minHeight="10rem"
+      height="100%"
       display="flex"
-      justifyContent="center"
+      // justifyContent="center"
       flexDirection="column"
       alignItems="center"
       // padding="1rem"
@@ -230,7 +231,7 @@ const RosterTable = ({ teamId }) => {
         // height="35rem"
         margin="1rem 0 0 0"
         width="100%"
-        backgroundColor="rgb(255,255,255, 0.8)"
+        backgroundColor="var(--EerieBlack)"
         overflowX="auto"
       >
         {/* Table for Players */}

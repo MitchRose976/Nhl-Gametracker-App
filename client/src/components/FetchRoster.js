@@ -43,14 +43,20 @@ const FetchRoster = () => {
 
   return (
     <Container
-      backgroundColor="rgb(255,255,255, 0.6)"
+      // backgroundColor="rgb(255,255,255, 0.6)"
+      // width="70%"
+      // height="45rem"
+      // display="flex"
+      // margin="2rem 0 0 0"
+      // justifyContent="center"
+      // flexDirection="column"
+      // padding="1rem"
+      className="roster-container"
       width="70%"
-      height="45rem"
-      display="flex"
-      margin="2rem 0 0 0"
-      justifyContent="center"
-      flexDirection="column"
-      padding="1rem"
+      borderRadius="1rem"
+      margin="1rem 0"
+      backgroundColor="var(--EerieBlack)"
+      padding= "1rem"
     >
       
         {/* Bootstrap Dropdown */}
@@ -75,7 +81,6 @@ const FetchRoster = () => {
             </Dropdown.Menu>
           </Collapse>
         </Dropdown>
-      
       <RosterTable teamId={selectedTeam ? selectedTeam.id : ""} />
     </Container>
   );

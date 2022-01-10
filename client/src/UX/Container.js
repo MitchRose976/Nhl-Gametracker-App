@@ -5,6 +5,7 @@ export const Container = styled.div`
     max-width: ${props => props.maxWidth};
     min-width: ${props => props.minWidth};
     height: ${props => props.height};
+    min-height: ${props => props.minHeight};
     padding: ${props => props.padding};
     margin: ${props => props.margin};
     border: ${props => props.border};
