@@ -7,15 +7,16 @@ import SVG, { Props as SVGProps } from "react-inlinesvg";
 
 function LiveGamesTable() {
   // Function to format current date to yyyy-mm-dd
-  // const formatYearMonthDay = (date) => date.toISOString().slice(0, 10);
-  // let currentDay = formatYearMonthDay(new Date());
+  const formatYearMonthDay = (date) => date.toISOString().slice(0, 10);
+  let currentDay = formatYearMonthDay(new Date());
   let dateObj = new Date();
   let month = dateObj.getUTCMonth() + 1; //months from 1-12
   let day = dateObj.getUTCDate();
   let year = dateObj.getUTCFullYear();
   let newDate = year + "-" + month + "-" + (day - 1);
+  console.log("currentDay: ", currentDay);
   // url to fetch info for all live games
-  let url = `https://nhl-score-api.herokuapp.com/api/scores?startDate=${newDate}&endDate=${newDate}`;
+  let url = `https://nhl-score-api.herokuapp.com/api/scores?startDate=${currentDay}&endDate=${currentDay}`;
   // url to fetch teams array that will be used to get all teams in
   // league
   let teamUrl = "https://statsapi.web.nhl.com/api/v1/teams";
@@ -26,6 +27,8 @@ function LiveGamesTable() {
   useEffect(() => {
     axios.get(url).then((response) => setLiveGames(response.data));
   }, [url]);
+
+  console.log("liveGames: ", liveGames);
 
   const [teamLogos, setTeamLogos] = useState(null);
   useEffect(() => {

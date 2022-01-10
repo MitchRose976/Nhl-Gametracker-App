@@ -18,9 +18,9 @@ function App() {
     // <Provider store={store}>
       <PageWrapper className="wrapper">
         <NavBar />
-        <LiveGamesTable/>
-        <FetchRoster/>
-        <Standings/>
+        {/* <LiveGamesTable/> */}
+        {/* <FetchRoster/> */}
+        {/* <Standings/> */}
         {/* <TopTenStats /> */}
       </PageWrapper>
     // </Provider>

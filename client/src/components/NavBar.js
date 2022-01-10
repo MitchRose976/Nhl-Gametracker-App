@@ -18,8 +18,15 @@ const Navbar = () => {
     transition: 'transform 0.9s ease', // smooth transition
    }
 
+   // Disable transitions on window resize
+   const disableTransition = {
+    transition: "none !important"
+   }
+
+   console.log("window.innerWidth: ", window.innerWidth);
+
   return (
-    <Nav isOpen={isOpen}>
+    <Nav isOpen={isOpen} style={{}}>
       <LogoDiv onClick={() => setisOpen(!isOpen)}>
           <HiArrowRight style={arrowStyle}/>
       </LogoDiv>
@@ -45,11 +52,13 @@ const Nav = styled.div`
   top: 0;
   width: ${({ isOpen }) => (isOpen ? "9rem" : "4rem")};
   transition: ${({ isOpen }) => (isOpen ? "width 0.5s" : "width 0.5s")};
-  min-height: 200vh;
-  height: 100% !important;
+  
   border-right: ${({ isOpen }) => (isOpen ? "1px solid var(--RedCrayola)" : "1px solid white")};
   
-  
+  @media (min-width: 501px) {
+    min-height: 200vh;
+    height: 100% !important;
+  }
   @media (max-width: 500px) {
     ${'' /* padding-right: 3rem !important; */}
     width: 100%;
@@ -136,8 +145,8 @@ const Menu = styled.div`
   }
   @media (max-width: 500px) {
     overflow: visible;
-    ${'' /* max-height: ${({ isOpen }) => (isOpen ? "300px" : "0")};
-    transition: all 0.3s ease-in; */}
+    max-height: ${({ isOpen }) => (isOpen ? "300px" : "0")};
+    transition: all 0.3s ease-in;
     margin-top: 3rem;
   }
 `;
