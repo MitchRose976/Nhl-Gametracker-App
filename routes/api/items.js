@@ -1,39 +1,41 @@
 const express = require('express');
 const router = express.Router();
+const axios = require('axios');
 
 // Item Model 
-const Item = require('../../models/Item');
+const Player = require('../../models/player');
 
 // @route GET api/items
-// @desc GET all items
+// @desc Get All items
 // @access public
 router.get('/', (req, res) => {
-    Item.find()
-        .sort({date: -1})
-        .then(items => res.json(items));
-})
+    Player.find()
+    .then(players => res.json(players));
+});
 
 // @route POST api/items
-// @desc POST an item
+// @desc Create a player
 // @access public
 router.post('/', (req, res) => {
-    const newItem = new Item({
+    // Mongoose method creates AND saves
+    Player.create({
         playerInfo: req.body.playerInfo,
         playerStats: req.body.playerStats
-    });
+    })
+      .then((player) => {
+        res.send(player);
+      })
+      .catch((err) => res.status(404).json({ success: false }));
+  });
 
-    newItem.save()
-    .then(() => res.json(newItem));
-})
-
-// @route DELETE api/items
-// @desc DELETE an item
+// @route DELETE api/items/:id
+// @desc Delete a player
 // @access public
-router.delete('/:id', (req, res) => {
-    Item.findById(req.params.id)
-    .then(item => item.remove().then(() => res.json({success: true})))
-    .catch(err => res.status(404).json({success: false}));
-})
-
+router.delete('/', (req, res) => {
+// Mongoose method creates AND saves
+    Player.findById(req.params.id)
+    .then(player => player.remove().then(() => res.json({success: true})))
+    .catch((err) => res.status(404).json({ success: false }));
+});
 
 module.exports = router;

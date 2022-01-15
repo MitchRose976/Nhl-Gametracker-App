@@ -1,6 +1,8 @@
-import { combineReducers } from 'redux';
-import itemReducer from './itemReducer';
+// import { combineReducers } from 'redux';
+// import playerReducer from './playerReducer';
 
-// export default combineReducers({
-//     item: itemReducer
+// const reducers = combineReducers({
+//     player: playerReducer
 // });
+
+// export default reducers;

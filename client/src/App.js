@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Provider } from "react-redux";
-//import store from "./store";
+// import { Provider, useSelector, useDispatch } from "react-redux";
+// import { bindActionCreators } from 'redux';
+// import * as actionCreators from './actions/types';
+// import store from "./store";
 import "./App.css";
 import styled from "styled-components";
 import background1 from "./media/arena-background.jpg";
@@ -14,6 +16,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import TopTenStats from "./components/TopTenStats";
 
 function App() {
+
+  // const player = useSelector((state) => state.player);
+
+  // console.log("player: ", player);
+
+  // const dispatch = useDispatch();
+
+  // const AC = bindActionCreators(actionCreators, dispatch);
+
   return (
     // <Provider store={store}>
       <PageWrapper className="wrapper">
