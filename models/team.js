@@ -1,29 +1,47 @@
-const mongoose = require("mongoose");
-const Player = require("./config/keys");
-const db = require("./config/keys").mongoURI;
-const axios = require("axios");
-//const fetch = require('node-fetch');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-let resultData;
-let saveCounter = 0;
+// Create Schema 
+const teamSchema = new Schema({
+    teamId: {
+        type: 'number',
+        required: [true, 'Team ID is required']
+    },
+    teamName: {
+        type: 'string',
+        required: [true, 'Team Name is required']
+    }, 
+    teamAbbreviation: {
+        type: 'string',
+        required: [true, 'Team Abbreviation is required']
+    },
+    teamDivision: {
+        type: 'object',
+        required: [true, 'Team Division is required']
+    },
+    teamConference: {
+        type: 'object',
+        required: [true, 'Team Division is required']
+    },
+    teamVenue: {
+        type: 'object',
+        required: [true, 'Team Venue is required']
+    },
+    firstYearOfPlay: {
+        type: 'string',
+        required: [true, 'First Year of Play is required']
+    },
+    teamLogoUrl: {
+        type: 'string',
+        required: [true, 'Team Logo URL is required']
+    }
+});
 
-// Connect to MongoDB
-mongoose
-  .connect(db)
-  .then(() => console.log("MongoDB Connected..."))
-  .catch((err) => console.log(err));
+const Team = mongoose.model('team', teamSchema);
 
-// Fetch all teams in league
-const getAllTeamsURL = "https://statsapi.web.nhl.com/api/v1/teams";
-// current season
-let currentYear = new Date().getFullYear();
-let currentSeason = (currentYear - 1).toString().concat(currentYear);
-// Increment the season year by 1 to get latest season stats
-// 2021/2022 => 2022/2023
-let newSeasonStart = new Date().toLocaleDateString();
-if (newSeasonStart === `7/15/${currentYear}`) {
-  currentSeason = currentYear.toString().concat(currentYear + 1);
-}
+module.exports = Team;
+
+/*
 
 const getPlayers = async () => {
   let allTeams = [];
@@ -79,7 +97,7 @@ const getPlayers = async () => {
         allPlayerInfo.forEach((player) =>
           playerHeadshotPromises.push(
             axios.get(
-              `http://nhl.bamcontent.com/images/headshots/current/168x168/${player.person.id}.jpg`
+              `https://statsapi.web.nhl.com/api/v1/people/${player.person.id}`
             )
           )
         );
@@ -88,8 +106,13 @@ const getPlayers = async () => {
               return response;
           }
         ).catch(err => console.log(err));
-        //allPlayerHeadshots.map(headshot => headshot.data);
-        console.log("allPlayerHeadshots: ", allPlayerHeadshots.length);
+        // console.log(playerPics.getPlayerMugshot({
+        //     name: 'Auston Matthews',
+        //     team: 'tor',
+        //     season: '20212022'
+        // }))
+        //allPlayerHeadshots.map(headshot => headshot.data.people.currentTeam.id);
+        //console.log("allPlayerHeadshots: ", allPlayerHeadshots.length);
         // Loop through array of stats for each player
         for (let i = 0; i < allPlayerInfo.length; i++) {
           let player = {
@@ -107,3 +130,4 @@ const getPlayers = async () => {
   }
 };
 getPlayers();
+*/

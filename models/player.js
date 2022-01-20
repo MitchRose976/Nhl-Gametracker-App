@@ -11,12 +11,12 @@ const playerSchema = new Schema({
         type: 'object',
         required: [true, 'Player stats are required']
     }, 
-    playerPicture: {
-        type: 'object',
-        required: false
+    playerHeadshot: {
+        type: 'string',
+        required: [true, 'Player headshot is required']
     }
 });
 
-const Player = mongoose.model('player', playerSchema);
+const Player = mongoose.model('players', playerSchema);
 
 module.exports = Player;

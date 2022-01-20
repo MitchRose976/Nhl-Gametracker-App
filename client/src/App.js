@@ -13,7 +13,7 @@ import LiveGamesTable from "./components/LiveGamesTable";
 import NavBar from "./components/NavBar";
 import Standings from "./components/Standings";
 import "bootstrap/dist/css/bootstrap.min.css";
-import TopTenStats from "./components/TopTenStats";
+//import TopTenStats from "./components/TopTenStats";
 
 function App() {
 

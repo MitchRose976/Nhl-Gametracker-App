@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import Container from "../UX/Container";
 import { Accordion, Table } from "react-bootstrap";
+import players, { getPlayerId, getPlayerMugshot } from '@nhl-api/players';
 
 function TopTenStats() {
   // Fetch all teams in league
@@ -41,6 +42,7 @@ function TopTenStats() {
           return response;
         });
         allRosters = allRosters.map((roster) => roster.data.roster);
+        //console.log("allRosters: ", allRosters);
         // Push all players in league to 1 array
         for (let i = 0; i < allRosters.length; i++) {
           for (let j = 0; j < allRosters[i].length; j++) {
@@ -67,6 +69,7 @@ function TopTenStats() {
         // console.log("allPlayerStats: ", allPlayerStats);
         // Loop through array of stats for each player
         for (let i = 0; i < allPlayerInfo.length; i++) {
+          //console.log(allPlayerInfo[i]);
           let player = {
             playerInfo: allPlayerInfo[i],
             playerStats: allPlayerStats[i],
@@ -83,6 +86,8 @@ function TopTenStats() {
 
   const [pointLeaders, setPointLeaders] = useState(null);
 
+
+  /*
   if (allPlayers) {
     
     // PLAYERS
@@ -335,7 +340,20 @@ function TopTenStats() {
     //console.log("getTop10Wins: ", getTop10Wins);
   }
 
+*/
 
+// const image = getPlayerMugshot({
+//   name: 'Auston Matthews',
+//   team: 'TOR',
+//   season: '20212022'
+// })
+// console.log("image: ", image);
+
+// const austonID = getPlayerId('auston mathews');
+// console.log("austonID: ", austonID);
+
+// let allHomies = players.map(p => p);
+// console.log("allHomies: ", allHomies)
 
   return (
     <Container
@@ -356,7 +374,7 @@ function TopTenStats() {
                 </tr>
               </thead>
               <tbody>
-                {pointLeaders ? pointLeaders : "Error while loading data"}
+                
               </tbody>
             </Table>
           </Accordion.Body>

@@ -9,7 +9,7 @@ const Player = require('../../models/player');
 // @desc Get All items
 // @access public
 router.get('/', (req, res) => {
-    Player.find()
+    Team.find()
     .then(players => res.json(players));
 });
 
