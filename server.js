@@ -19,7 +19,7 @@ mongoose
 .catch(err => console.log(err));
 
 // Use Routes
-app.use('/api/players', players);
+app.use('/api/items', players);
 
 
 

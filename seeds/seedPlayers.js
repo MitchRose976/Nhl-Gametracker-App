@@ -33,9 +33,8 @@ const seed = async () => {
       .find()
       .toArray();
 
-    // array to hold promises for team rosters
-    let rosterPromises = [];
     // push a promise for each teams roster to array
+    let rosterPromises = [];
     await allTeams.forEach((team) => {
       rosterPromises.push(
         axios.get(
@@ -55,7 +54,7 @@ const seed = async () => {
         allPlayerInfo.push(allRosters[i][j]);
       }
     }
-    // Fetch stats for every player in the league
+    // push a promise for each players stats and biography to arrays
     let playerStatsPromises = [];
     let fullPlayerInfoPromises = [];
     allPlayerInfo.forEach((player) => {
@@ -91,7 +90,7 @@ const seed = async () => {
     // Loop through array of stats/bio's for each player
     let players = [];
     for (let i = 0; i < allPlayerInfo.length; i++) {
-      // Make object of each player
+      // Make Player model of each player
       let player = new Player({
         playerInfo: allPlayerBios[i],
         playerStats: allPlayerStats[i],
@@ -103,7 +102,7 @@ const seed = async () => {
     // Post data to "players" collection in mongoDB
     let database = 'myFirstDatabase'
     let collection = 'players'
-    await postDataToMongoDB(client, database, collection, players);
+    //await postDataToMongoDB(client, database, collection, players);
 
   } catch (err) {
     console.log(err);

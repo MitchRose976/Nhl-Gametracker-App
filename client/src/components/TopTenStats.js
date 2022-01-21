@@ -229,6 +229,7 @@ function TopTenStats() {
           a.playerStats.stat.powerPlayTimeOnIce
       );
     //console.log("getTop10TimeOnIcePowerplay: ", getTop10TimeOnIcePowerplay);
+    
     // Top 10 Powerplay Goals
     const getTop10PowerplayGoals = allPlayers
       .filter((player) => {
@@ -242,6 +243,7 @@ function TopTenStats() {
           b.playerStats.stat.powerPlayGoals - a.playerStats.stat.powerPlayGoals
       );
     //console.log("getTop10PowerplayGoals: ", getTop10PowerplayGoals);
+    
     // Top 10 Short Handed Goals
     const getTop10ShortHandedGoals = allPlayers
       .filter((player) => {
@@ -256,6 +258,7 @@ function TopTenStats() {
           a.playerStats.stat.shortHandedGoals
       );
     //console.log("getTop10ShortHandedGoals: ", getTop10ShortHandedGoals);
+    
     // Top 10 Powerplay Points
     const getTop10PowerplayPoints = allPlayers
       .filter((player) => {
@@ -270,6 +273,7 @@ function TopTenStats() {
           a.playerStats.stat.powerPlayPoints
       );
     //console.log("getTop10PowerplayPoints: ", getTop10PowerplayPoints);
+    
     // Top 10 Short Handed Points
     const getTop10ShortHandedPoints = allPlayers
       .filter((player) => {
@@ -284,6 +288,7 @@ function TopTenStats() {
           a.playerStats.stat.shortHandedPoints
       );
     //console.log("getTop10ShortHandedPoints: ", getTop10ShortHandedPoints);
+    
     // Top 10 Face Off %
     const getTop10FaceoffPercentage = allPlayers
       .filter((player) => {
@@ -298,6 +303,7 @@ function TopTenStats() {
     //console.log("getTop10FaceoffPercentage: ", getTop10FaceoffPercentage);
 
     // GOALIES (Above 5 games played)
+    
     // Top 10 Save Percentage
     const getTop10SavePercentage = allPlayers
       .filter((player) => {
@@ -312,6 +318,7 @@ function TopTenStats() {
           b.playerStats.stat.savePercentage - a.playerStats.stat.savePercentage
       );
     //console.log("getTop10SavePercentage: ", getTop10SavePercentage);
+    
     // Top 10 Goals Against Average
     const getTop10GoalsAgainstAverage = allPlayers
       .filter((player) => {
@@ -327,6 +334,7 @@ function TopTenStats() {
           b.playerStats.stat.goalAgainstAverage
       );
     //console.log("getTop10GoalsAgainstAverage: ", getTop10GoalsAgainstAverage);
+    
     // Top 10 Wins
     const getTop10Wins = allPlayers
       .filter((player) => {
