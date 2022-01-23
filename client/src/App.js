@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import { Provider, useSelector, useDispatch } from "react-redux";
 // import { bindActionCreators } from 'redux';
 // import * as actionCreators from './actions/types';
 // import store from "./store";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import styled from "styled-components";
 import background1 from "./media/arena-background.jpg";
@@ -13,10 +14,10 @@ import LiveGamesTable from "./components/LiveGamesTable";
 import NavBar from "./components/NavBar";
 import Standings from "./components/Standings";
 import "bootstrap/dist/css/bootstrap.min.css";
-//import TopTenStats from "./components/TopTenStats";
+import TopTenStats from "./components/top10stats/TopTenStats";
+import Top10Points from "./components/top10stats/Top10Points";
 
 function App() {
-
   // const player = useSelector((state) => state.player);
 
   // console.log("player: ", player);
@@ -25,15 +26,21 @@ function App() {
 
   // const AC = bindActionCreators(actionCreators, dispatch);
 
+
+
   return (
     // <Provider store={store}>
-      <PageWrapper className="wrapper">
-        <NavBar />
-        {/* <LiveGamesTable/> */}
-        {/* <FetchRoster/> */}
-        {/* <Standings/> */}
-        {/* <TopTenStats /> */}
-      </PageWrapper>
+    <PageWrapper className="wrapper">
+      <NavBar />
+      {/* <LiveGamesTable/> */}
+      {/* <FetchRoster/> */}
+      {/* <Standings/> */}
+      {/* <TopTenStats /> */}
+      {/* <Routes>
+        <Route to="/" component={Top10Points}></Route>
+      </Routes> */}
+      <TopTenStats />
+    </PageWrapper>
     // </Provider>
   );
 }
@@ -45,7 +52,7 @@ const PageWrapper = styled.div`
   -moz-background-size: cover;
   -o-background-size: cover;
   min-height: 200vh;
-  ${'' /* height: 100%; */}
+  ${"" /* height: 100%; */}
   display: flex;
   ${"" /* justify-content: center; */}
   align-items: center;

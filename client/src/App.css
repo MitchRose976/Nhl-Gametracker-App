@@ -118,6 +118,31 @@ html::-webkit-scrollbar-thumb {
   margin-top: 2rem;
 }
 
+/* Styles for Top10Stats Table - Player Headshots */
+.tdStyle {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.headshotDiv {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 1rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  overflow: hidden;
+  margin: 0 1rem;
+};
+
+.headshotImage {
+  max-width: 100%;
+  max-height: 100%;
+}
+
 
 @media screen and (max-width: 600px) {
   
