@@ -31,6 +31,7 @@ function TopTenStats() {
       color="white"
       margin="2rem 0"
       borderRadius="1rem"
+      className="top-ten-stats-container"
     >
       <h1 style={{textAlign: 'center', padding: '0.5rem'}}>Top 10 Stats</h1>
       <Accordion defaultActiveKey="0" className="top-ten-stats-accordion">

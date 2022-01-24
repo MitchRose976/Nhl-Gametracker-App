@@ -219,17 +219,8 @@ function LiveGamesTable() {
     <Container
       className="scoreboard-container"
       backgroundColor="var(--EerieBlack)"
-      //   width="70%"
-      //   height="30%"
-      //display="flex"
-      //   margin="2rem 0 0 0"
-      //justifyContent="center"
-      //alignItems="center"
-      //flexDirection="column"
-      //   padding="1rem"
       overflow="hidden"
       borderRadius="1rem"
-    //   border="1px solid blue"
       margin="2rem auto"
     >
       <ScoreboardHeader>Scoreboard</ScoreboardHeader>

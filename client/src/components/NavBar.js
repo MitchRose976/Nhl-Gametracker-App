@@ -52,13 +52,14 @@ const Nav = styled.div`
   position: absolute;
   left: 0;
   top: 0;
+  bottom: 0;
   width: ${({ isOpen }) => (isOpen ? "9rem" : "4rem")};
   transition: ${({ isOpen }) => (isOpen ? "width 0.5s" : "width 0.5s")};
   
   border-right: ${({ isOpen }) => (isOpen ? "1px solid var(--RedCrayola)" : "1px solid white")};
   
   @media (min-width: 501px) {
-    min-height: 200vh;
+    min-height: 210vh;
     height: 100% !important;
   }
   @media (max-width: 500px) {
@@ -135,7 +136,7 @@ const Menu = styled.div`
   align-items: center;
   position: relative;
   flex-direction: column;
-  height: 37%;
+  height: 32%;
 
   @media (max-width: 768px) {
     overflow: hidden;
@@ -150,6 +151,7 @@ const Menu = styled.div`
     max-height: ${({ isOpen }) => (isOpen ? "300px" : "0")};
     transition: all 0.3s ease-in;
     margin-top: 3rem;
+    height: 37%;
   }
 `;
 

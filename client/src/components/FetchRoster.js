@@ -43,14 +43,6 @@ const FetchRoster = () => {
 
   return (
     <Container
-      // backgroundColor="rgb(255,255,255, 0.6)"
-      // width="70%"
-      // height="45rem"
-      // display="flex"
-      // margin="2rem 0 0 0"
-      // justifyContent="center"
-      // flexDirection="column"
-      // padding="1rem"
       className="roster-container"
       width="70%"
       borderRadius="1rem"

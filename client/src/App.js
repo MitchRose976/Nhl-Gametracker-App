@@ -58,12 +58,16 @@ const PageWrapper = styled.div`
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  min-height: 200vh;
+  min-height: 210vh;
   ${"" /* height: 100%; */}
   display: flex;
   ${"" /* justify-content: center; */}
   align-items: center;
   flex-direction: column;
+
+  @media (max-width: 500px) {
+    min-height: 380vh;
+  }
 `;
 
 export default App;
