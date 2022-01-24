@@ -27,12 +27,14 @@ function TopTenStats() {
     <Container
       width="50%"
       height="50rem"
-      backgroundColor="white"
+      backgroundColor="var(--EerieBlack)"
+      color="white"
       margin="2rem 0"
       borderRadius="1rem"
     >
-      <Accordion className="top-ten-stats-accordion">
-        <Top10Points />
+      <h1 style={{textAlign: 'center', padding: '0.5rem'}}>Top 10 Stats</h1>
+      <Accordion defaultActiveKey="0" className="top-ten-stats-accordion">
+        <Top10Points eventKey="0"/>
         <Top10Goals eventKey="1"/>
         <Top10Assists eventKey="2"/>
         <Top10PlusMinus eventKey="3"/>

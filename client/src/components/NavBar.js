@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { HiArrowRight } from "react-icons/hi";
 import { GoThreeBars } from "react-icons/go";
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   // State to control hamburger menu
@@ -34,9 +35,10 @@ const Navbar = () => {
           <GoThreeBars style={hamburgerStyle}/>
       </HamburgerDiv>
       <Menu isOpen={isOpen}>
-        <MenuItem href="#about">Live Scores</MenuItem>
-        <MenuItem href="#projects">Stats</MenuItem>
-        <MenuItem href="#contact">Standings</MenuItem>
+        <MenuItem to="/">Live Scores</MenuItem>
+        <MenuItem to="rosters">Rosters</MenuItem>
+        <MenuItem to="standings">Standings</MenuItem>
+        <MenuItem to="statscentre">Stats Centre</MenuItem>
       </Menu>
     </Nav>
   );
@@ -133,7 +135,7 @@ const Menu = styled.div`
   align-items: center;
   position: relative;
   flex-direction: column;
-  height: 30%;
+  height: 37%;
 
   @media (max-width: 768px) {
     overflow: hidden;
@@ -152,7 +154,7 @@ const Menu = styled.div`
 `;
 
 // Menu Item
-const MenuItem = styled.a`
+const MenuItem = styled(Link)`
   text-decoration: none;
   color: white;
   margin: 1rem 0;

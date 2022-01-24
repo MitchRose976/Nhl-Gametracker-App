@@ -17,7 +17,8 @@ export const Container = styled.div`
     align-items: ${props => props.alignItems};
     flex-direction: ${props => props.flexDirection};
     overflow-x: ${props => props.overflowX};
-    overflow: ${props => props.overflow}
+    overflow: ${props => props.overflow};
+    color: ${props => props.color};
 `
 
 export default Container

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 // import { bindActionCreators } from 'redux';
 // import * as actionCreators from './actions/types';
 // import store from "./store";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import styled from "styled-components";
 import background1 from "./media/arena-background.jpg";
@@ -19,28 +19,35 @@ import Top10Points from "./components/top10stats/Top10Points";
 
 function App() {
   // const player = useSelector((state) => state.player);
-
   // console.log("player: ", player);
-
   // const dispatch = useDispatch();
-
   // const AC = bindActionCreators(actionCreators, dispatch);
-
-
 
   return (
     // <Provider store={store}>
-    <PageWrapper className="wrapper">
-      <NavBar />
-      {/* <LiveGamesTable/> */}
-      {/* <FetchRoster/> */}
-      {/* <Standings/> */}
-      {/* <TopTenStats /> */}
-      {/* <Routes>
-        <Route to="/" component={Top10Points}></Route>
-      </Routes> */}
-      <TopTenStats />
-    </PageWrapper>
+    <Router>
+      <PageWrapper className="wrapper">
+        <NavBar />
+        <Switch>
+          {/* HOME */}
+          <Route exact path="/">
+            <LiveGamesTable/>
+          </Route>
+          {/* ROSTERS */}
+          <Route exact path="/rosters">
+            <FetchRoster/>
+          </Route>
+          {/* STANDINGS */}
+          <Route exact path="/standings">
+            <Standings/>
+          </Route>
+          {/* STATS CENTRE */}
+          <Route exact path="/statscentre">
+            <TopTenStats />
+          </Route>
+        </Switch>
+      </PageWrapper>
+    </Router>
     // </Provider>
   );
 }
