@@ -68,7 +68,7 @@ function Top10Points() {
   getContent();
 
   return (
-    <Accordion.Item >
+    <Accordion.Item eventKey="0">
       <Accordion.Header>Top 10 Points</Accordion.Header>
       <Accordion.Body>
         <Table striped bordered hover>

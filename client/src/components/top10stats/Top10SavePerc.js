@@ -19,8 +19,6 @@ function Top10SavePercentage() {
       });
   }, [url]);
 
-  //console.log("Top 10 assists: ", top10PlusMinus);
-
   const tdStyle = {
     display: "flex",
     alignItems: "center",
@@ -64,14 +62,13 @@ function Top10SavePercentage() {
           {/* Player Points */}
           <td>{player.playerStats.stat.savePercentage}</td>
         </tr>
-      );
-    });
-    console.log("content: ", content);
+      )
+    })
   };
   getContent();
 
   return (
-    <Accordion.Item >
+    <Accordion.Item eventKey="14">
       <Accordion.Header>Top 10 Save Percentage</Accordion.Header>
       <Accordion.Body>
         <Table striped bordered hover>

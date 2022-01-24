@@ -19,8 +19,6 @@ function Top10PenaltyMinutes() {
       });
   }, [url]);
 
-  console.log("Top 10 assists: ", top10PenaltyMinutes);
-
   const tdStyle = {
     display: "flex",
     alignItems: "center",
@@ -66,12 +64,11 @@ function Top10PenaltyMinutes() {
         </tr>
       );
     });
-    console.log("content: ", content);
   };
   getContent();
 
   return (
-    <Accordion.Item >
+    <Accordion.Item eventKey="4">
       <Accordion.Header>Top 10 Penalty Minutes</Accordion.Header>
       <Accordion.Body>
         <Table striped bordered hover>

@@ -19,8 +19,6 @@ function Top10GoalsAgainst() {
       });
   }, [url]);
 
-  //console.log("Top 10 assists: ", top10PlusMinus);
-
   const tdStyle = {
     display: "flex",
     alignItems: "center",
@@ -64,14 +62,13 @@ function Top10GoalsAgainst() {
           {/* Player Points */}
           <td>{player.playerStats.stat.goalAgainstAverage}</td>
         </tr>
-      );
-    });
-    console.log("content: ", content);
+      )
+    })
   };
   getContent();
 
   return (
-    <Accordion.Item >
+    <Accordion.Item eventKey="16">
       <Accordion.Header>Top 10 Goals Against Average</Accordion.Header>
       <Accordion.Body>
         <Table striped bordered hover>

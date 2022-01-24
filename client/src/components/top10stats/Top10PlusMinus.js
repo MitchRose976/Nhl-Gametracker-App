@@ -19,8 +19,6 @@ function Top10PlusMinus() {
       });
   }, [url]);
 
-  console.log("Top 10 assists: ", top10PlusMinus);
-
   const tdStyle = {
     display: "flex",
     alignItems: "center",
@@ -64,14 +62,13 @@ function Top10PlusMinus() {
           {/* Player Points */}
           <td>{player.playerStats.stat.plusMinus}</td>
         </tr>
-      );
-    });
-    console.log("content: ", content);
+      )
+    })
   };
   getContent();
 
   return (
-    <Accordion.Item >
+    <Accordion.Item eventKey="3">
       <Accordion.Header>Top 10 Plus Minus</Accordion.Header>
       <Accordion.Body>
         <Table striped bordered hover>

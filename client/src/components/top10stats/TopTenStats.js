@@ -29,9 +29,10 @@ function TopTenStats() {
       height="50rem"
       backgroundColor="white"
       margin="2rem 0"
+      borderRadius="1rem"
     >
-      <Accordion defaultActiveKey="0">
-        <Top10Points eventKey="0"/>
+      <Accordion className="top-ten-stats-accordion">
+        <Top10Points />
         <Top10Goals eventKey="1"/>
         <Top10Assists eventKey="2"/>
         <Top10PlusMinus eventKey="3"/>

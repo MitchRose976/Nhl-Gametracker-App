@@ -19,8 +19,6 @@ function Top10ShortHandedPoints() {
       });
   }, [url]);
 
-  //console.log("Top 10 assists: ", top10PlusMinus);
-
   const tdStyle = {
     display: "flex",
     alignItems: "center",
@@ -64,14 +62,13 @@ function Top10ShortHandedPoints() {
           {/* Player Points */}
           <td>{player.playerStats.stat.shortHandedPoints}</td>
         </tr>
-      );
-    });
-    console.log("content: ", content);
+      )
+    })
   };
   getContent();
 
   return (
-    <Accordion.Item >
+    <Accordion.Item eventKey="12">
       <Accordion.Header>Top 10 Short-Handed Points</Accordion.Header>
       <Accordion.Body>
         <Table striped bordered hover>

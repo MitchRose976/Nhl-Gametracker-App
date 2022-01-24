@@ -19,8 +19,6 @@ function Top10Hits() {
       });
   }, [url]);
 
-  console.log("Top 10 hits: ", top10Hits);
-
   const tdStyle = {
     display: "flex",
     alignItems: "center",
@@ -70,7 +68,7 @@ function Top10Hits() {
   getContent();
 
   return (
-    <Accordion.Item >
+    <Accordion.Item eventKey="5">
       <Accordion.Header>Top 10 Hits</Accordion.Header>
       <Accordion.Body>
         <Table striped bordered hover>

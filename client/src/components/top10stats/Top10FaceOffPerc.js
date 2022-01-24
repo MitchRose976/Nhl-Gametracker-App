@@ -19,8 +19,6 @@ function Top10FaceOffPercentage() {
       });
   }, [url]);
 
-  //console.log("Top 10 assists: ", top10PlusMinus);
-
   const tdStyle = {
     display: "flex",
     alignItems: "center",
@@ -64,14 +62,13 @@ function Top10FaceOffPercentage() {
           {/* Player Points */}
           <td>{player.playerStats.stat.faceOffPct}</td>
         </tr>
-      );
-    });
-    console.log("content: ", content);
+      )
+    })
   };
   getContent();
 
   return (
-    <Accordion.Item >
+    <Accordion.Item eventKey="13">
       <Accordion.Header>Top 10 Face Off Percentage</Accordion.Header>
       <Accordion.Body>
         <Table striped bordered hover>

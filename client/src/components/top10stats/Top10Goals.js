@@ -19,8 +19,6 @@ function Top10Goals() {
       });
   }, [url]);
 
-  console.log("Top 10 goals: ", top10Goals);
-
   const tdStyle = {
     display: "flex",
     alignItems: "center",
@@ -64,21 +62,20 @@ function Top10Goals() {
           {/* Player Points */}
           <td>{player.playerStats.stat.goals}</td>
         </tr>
-      );
-    });
-    console.log("content: ", content);
+      )
+    })
   };
   getContent();
 
   return (
-    <Accordion.Item >
+    <Accordion.Item eventKey="1">
       <Accordion.Header>Top 10 Goals</Accordion.Header>
       <Accordion.Body>
         <Table striped bordered hover>
           <thead>
             <tr>
               <th>Name</th>
-              <th>Points</th>
+              <th>Goals</th>
             </tr>
           </thead>
           <tbody>{content ? content : null}</tbody>

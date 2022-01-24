@@ -143,6 +143,11 @@ html::-webkit-scrollbar-thumb {
   max-height: 100%;
 }
 
+/* TOP 10 STATS */
+.top-ten-stats-accordion {
+  
+}
+
 
 @media screen and (max-width: 600px) {
   

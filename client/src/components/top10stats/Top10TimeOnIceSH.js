@@ -64,14 +64,13 @@ function Top10TimeOnIceShortHanded() {
           {/* Player Points */}
           <td>{player.playerStats.stat.shortHandedTimeOnIce}</td>
         </tr>
-      );
-    });
-    console.log("content: ", content);
+      )
+    })
   };
   getContent();
 
   return (
-    <Accordion.Item >
+    <Accordion.Item eventKey="7">
       <Accordion.Header>Top 10 Time On Ice Short Handed</Accordion.Header>
       <Accordion.Body>
         <Table striped bordered hover>

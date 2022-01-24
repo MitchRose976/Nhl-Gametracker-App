@@ -19,8 +19,6 @@ function Top10ShortHandedGoals() {
       });
   }, [url]);
 
-  //console.log("Top 10 assists: ", top10PlusMinus);
-
   const tdStyle = {
     display: "flex",
     alignItems: "center",
@@ -64,14 +62,13 @@ function Top10ShortHandedGoals() {
           {/* Player Points */}
           <td>{player.playerStats.stat.shortHandedGoals}</td>
         </tr>
-      );
-    });
-    console.log("content: ", content);
+      )
+    })
   };
   getContent();
 
   return (
-    <Accordion.Item >
+    <Accordion.Item eventKey="10">
       <Accordion.Header>Top 10 Short-Handed Goals</Accordion.Header>
       <Accordion.Body>
         <Table striped bordered hover>
