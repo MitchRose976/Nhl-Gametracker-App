@@ -8,14 +8,12 @@ import "./App.css";
 import styled from "styled-components";
 import background1 from "./media/arena-background.jpg";
 import FetchRoster from "./components/FetchRoster";
-import RosterTable from "./components/RosterTable";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LiveGamesTable from "./components/LiveGamesTable";
 import NavBar from "./components/NavBar";
 import Standings from "./components/Standings";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TopTenStats from "./components/top10stats/TopTenStats";
-import Top10Points from "./components/top10stats/Top10Points";
 
 function App() {
   // const player = useSelector((state) => state.player);
@@ -58,15 +56,17 @@ const PageWrapper = styled.div`
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  min-height: 210vh;
-  ${"" /* height: 100%; */}
+  min-height: 270vh;
   display: flex;
-  ${"" /* justify-content: center; */}
   align-items: center;
   flex-direction: column;
 
-  @media (max-width: 500px) {
+  @media (max-width: 540px) {
     min-height: 380vh;
+  }
+
+  @media (max-width: 280px) {
+    min-height: 400vh;
   }
 `;
 

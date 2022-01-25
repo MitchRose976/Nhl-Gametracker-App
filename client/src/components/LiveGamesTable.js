@@ -14,21 +14,17 @@ function LiveGamesTable() {
   let day = dateObj.getUTCDate();
   let year = dateObj.getUTCFullYear();
   let newDate = year + "-" + month + "-" + (day - 1);
-  console.log("currentDay: ", currentDay);
   // url to fetch info for all live games
   let url = `https://nhl-score-api.herokuapp.com/api/scores?startDate=${currentDay}&endDate=${currentDay}`;
   // url to fetch teams array that will be used to get all teams in
   // league
   let teamUrl = "https://statsapi.web.nhl.com/api/v1/teams";
   // url to fetch the logo for specific team based on its id
-  //let teamPicUrl = `https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/${teamId}.svg`;
   // State to hold API call for live games
   const [liveGames, setLiveGames] = useState(null);
   useEffect(() => {
     axios.get(url).then((response) => setLiveGames(response.data));
   }, [url]);
-
-  console.log("liveGames: ", liveGames);
 
   const [teamLogos, setTeamLogos] = useState(null);
   useEffect(() => {
@@ -103,7 +99,6 @@ function LiveGamesTable() {
     // Array to hold all games
     let allGames = liveGames[0].games;
     allGames.forEach((game) => {
-      //console.log("game: ", game);
       let gameStatus = setGameStatus(game);
       let awayTeamLogoURL;
       let homeTeamLogoURL;

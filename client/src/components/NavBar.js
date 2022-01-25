@@ -19,11 +19,6 @@ const Navbar = () => {
     transition: 'transform 0.9s ease', // smooth transition
    }
 
-   // Disable transitions on window resize
-   const disableTransition = {
-    transition: "none !important"
-   }
-
    console.log("window.innerWidth: ", window.innerWidth);
 
   return (
@@ -55,11 +50,11 @@ const Nav = styled.div`
   bottom: 0;
   width: ${({ isOpen }) => (isOpen ? "9rem" : "4rem")};
   transition: ${({ isOpen }) => (isOpen ? "width 0.5s" : "width 0.5s")};
-  
   border-right: ${({ isOpen }) => (isOpen ? "1px solid var(--RedCrayola)" : "1px solid white")};
+
   
   @media (min-width: 501px) {
-    min-height: 210vh;
+    min-height: 270vh;
     height: 100% !important;
   }
   @media (max-width: 500px) {
