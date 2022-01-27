@@ -5,7 +5,7 @@ import { Accordion, Table } from "react-bootstrap";
 function Top10SavePercentage() {
   const [top10SavePercentage, settop10SavePercentage] = useState([]);
 
-  const url = "http://localhost:5000/api/items/players/top10savepercentage";
+  const url = "https://nhl-game-tracker-app.herokuapp.com/api/items/players/top10savepercentage";
 
   useEffect(async () => {
     await axios

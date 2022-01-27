@@ -5,7 +5,7 @@ import { Accordion, Table } from "react-bootstrap";
 function Top10Points() {
   const [top10Points, settop10Points] = useState([]);
 
-  const url = "http://localhost:5000/api/items/players/top10points";
+  const url = "https://nhl-game-tracker-app.herokuapp.com/api/items/players/top10points";
 
   useEffect(async () => {
     await axios

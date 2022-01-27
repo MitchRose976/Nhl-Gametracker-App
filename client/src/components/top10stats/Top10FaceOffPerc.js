@@ -5,7 +5,7 @@ import { Accordion, Table } from "react-bootstrap";
 function Top10FaceOffPercentage() {
   const [top10FaceOffPercentage, settop10FaceOffPercentage] = useState([]);
 
-  const url = "http://localhost:5000/api/items/players/top10faceoffpercentage";
+  const url = "https://nhl-game-tracker-app.herokuapp.com/api/items/players/top10faceoffpercentage";
 
   useEffect(async () => {
     await axios

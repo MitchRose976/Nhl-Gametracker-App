@@ -3,7 +3,7 @@ const { MongoClient } = require("mongodb");
 const Player = require("../models/player");
 const axios = require("axios");
 const db = require("../config/keys").mongoURI;
-const { postDataToMongoDB, getData } = require("./functions");
+const { postDataToMongoDB, getData, deleteCollection } = require("./functions");
 
 // current season
 let currentYear = new Date().getFullYear();
@@ -94,7 +94,7 @@ const seed = async () => {
       let player = new Player({
         playerInfo: allPlayerBios[i],
         playerStats: allPlayerStats[i],
-        playerHeadshot: `http://nhl.bamcontent.com/images/headshots/current/168x168/${allPlayerBios[i][0].id}.jpg`
+        playerHeadshot: `https://cms.nhl.bamgrid.com/images/headshots/current/168x168/${allPlayerBios[i][0].id}.jpg`
       });
       players.push(player);
     }
@@ -102,7 +102,9 @@ const seed = async () => {
     // Post data to "players" collection in mongoDB
     let database = 'myFirstDatabase'
     let collection = 'players'
+    //await deleteCollection(client, database, collection);
     //await postDataToMongoDB(client, database, collection, players);
+    
 
   } catch (err) {
     console.log(err);

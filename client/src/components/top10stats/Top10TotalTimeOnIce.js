@@ -5,8 +5,8 @@ import { Accordion, Table } from "react-bootstrap";
 function Top10TotalTimeOnIce() {
   const [top10TotalTimeOnIce, settop10TotalTimeOnIce] = useState([]);
 
-  const url = "http://localhost:5000/api/items/players/top10totaltimeonice";
-
+  // const url = "http://localhost:5000/api/items/players/top10totaltimeonice";
+  const url = "https://nhl-game-tracker-app.herokuapp.com/api/items/players/top10totaltimeonice";
   useEffect(async () => {
     await axios
       .get(url)
